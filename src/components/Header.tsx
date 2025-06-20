@@ -18,14 +18,14 @@ const Header = () => {
             <Calculator className="h-8 w-8" />
             <Link to="/" className="text-2xl font-bold">Calgary High School Math Club</Link>
           </div>
-          <nav className="hidden md:flex space-x-6">
-            <Link to="/" className="hover:text-blue-200 transition-colors">
+          <nav className="hidden md:flex items-center space-x-6">
+            <Link to="/" className="hover:text-blue-200 transition-colors flex items-center h-10">
               Home
             </Link>
             
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="text-white hover:text-blue-200 hover:bg-transparent">
+                <Button variant="ghost" className="text-white hover:text-blue-200 hover:bg-transparent flex items-center h-10">
                   Explore Programs <ChevronDown className="ml-1 h-4 w-4" />
                 </Button>
               </DropdownMenuTrigger>
@@ -44,13 +44,13 @@ const Header = () => {
 
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="text-white hover:text-blue-200 hover:bg-transparent">
+                <Button variant="ghost" className="text-white hover:text-blue-200 hover:bg-transparent flex items-center h-10">
                   Events <ChevronDown className="ml-1 h-4 w-4" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="bg-white text-black">
                 <DropdownMenuItem>
-                  Recent Events
+                  <Link to="/events" className="w-full">Recent Events</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
                   Upcoming Competitions
@@ -61,11 +61,11 @@ const Header = () => {
               </DropdownMenuContent>
             </DropdownMenu>
 
-            <Link to="/about" className="hover:text-blue-200 transition-colors">
+            <Link to="/about" className="hover:text-blue-200 transition-colors flex items-center h-10">
               About Us
             </Link>
             
-            <Link to="/quiz" className="hover:text-blue-200 transition-colors">
+            <Link to="/quiz" className="hover:text-blue-200 transition-colors flex items-center h-10">
               Practice
             </Link>
           </nav>

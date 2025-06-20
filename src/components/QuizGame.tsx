@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
+import { Timer } from 'lucide-react';
 import quizData from '@/data/quizQuestions.json';
 
 interface Answer {
@@ -22,6 +23,9 @@ const QuizGame = () => {
   const [showResult, setShowResult] = useState(false);
   const [questions, setQuestions] = useState<Question[]>([]);
   const [quizCompleted, setQuizCompleted] = useState(false);
+  const [startTime, setStartTime] = useState<Date | null>(null);
+  const [endTime, setEndTime] = useState<Date | null>(null);
+  const [currentTime, setCurrentTime] = useState<Date>(new Date());
 
   useEffect(() => {
     // Shuffle questions and answers when component mounts
@@ -31,7 +35,29 @@ const QuizGame = () => {
       answers: [...q.answers].sort(() => Math.random() - 0.5)
     }));
     setQuestions(questionsWithShuffledAnswers);
+    setStartTime(new Date());
   }, []);
+
+  useEffect(() => {
+    if (startTime && !quizCompleted) {
+      const timer = setInterval(() => {
+        setCurrentTime(new Date());
+      }, 1000);
+      return () => clearInterval(timer);
+    }
+  }, [startTime, quizCompleted]);
+
+  const formatTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
+  };
+
+  const getElapsedTime = () => {
+    if (!startTime) return 0;
+    const endTimeToUse = endTime || currentTime;
+    return Math.floor((endTimeToUse.getTime() - startTime.getTime()) / 1000);
+  };
 
   const handleAnswerClick = (answerIndex: number) => {
     if (selectedAnswer !== null) return;
@@ -51,6 +77,7 @@ const QuizGame = () => {
       setShowResult(false);
     } else {
       setQuizCompleted(true);
+      setEndTime(new Date());
     }
   };
 
@@ -60,6 +87,8 @@ const QuizGame = () => {
     setSelectedAnswer(null);
     setShowResult(false);
     setQuizCompleted(false);
+    setStartTime(new Date());
+    setEndTime(null);
     
     // Reshuffle questions and answers
     const shuffledQuestions = [...quizData].sort(() => Math.random() - 0.5);
@@ -76,6 +105,8 @@ const QuizGame = () => {
 
   if (quizCompleted) {
     const percentage = Math.round((score / questions.length) * 100);
+    const totalTime = getElapsedTime();
+    
     return (
       <Card className="max-w-2xl mx-auto">
         <CardHeader className="text-center">
@@ -83,6 +114,12 @@ const QuizGame = () => {
           <CardDescription className="text-xl">
             Your final score: {score} out of {questions.length} ({percentage}%)
           </CardDescription>
+          <div className="flex items-center justify-center gap-2 mt-4">
+            <Timer className="h-5 w-5 text-blue-600" />
+            <span className="text-lg font-semibold text-blue-600">
+              Time: {formatTime(totalTime)}
+            </span>
+          </div>
         </CardHeader>
         <CardContent className="text-center">
           <div className="mb-6">
@@ -104,6 +141,7 @@ const QuizGame = () => {
 
   const currentQ = questions[currentQuestion];
   const progressValue = ((currentQuestion + 1) / questions.length) * 100;
+  const elapsedTime = getElapsedTime();
 
   return (
     <div className="max-w-4xl mx-auto">
@@ -112,9 +150,17 @@ const QuizGame = () => {
           <span className="text-sm text-gray-600">
             Question {currentQuestion + 1} of {questions.length}
           </span>
-          <span className="text-sm text-gray-600">
-            Score: {score}/{questions.length}
-          </span>
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
+              <Timer className="h-4 w-4 text-blue-600" />
+              <span className="text-sm font-semibold text-blue-600">
+                {formatTime(elapsedTime)}
+              </span>
+            </div>
+            <span className="text-sm text-gray-600">
+              Score: {score}/{questions.length}
+            </span>
+          </div>
         </div>
         <Progress value={progressValue} className="h-2" />
       </div>

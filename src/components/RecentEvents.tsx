@@ -6,25 +6,25 @@ import { Calendar, MapPin } from 'lucide-react';
 const RecentEvents = () => {
   const events = [
     {
-      title: "AMC 12 Preparation Workshop",
-      date: "March 15, 2024",
-      location: "Room 204",
-      description: "Intensive preparation session for the upcoming AMC 12 competition with practice problems and strategies.",
+      title: "Math Tutoring for High School Students",
+      date: "July 19, 2024",
+      location: "Central Library",
+      description: "Free tutoring sessions for high school students struggling with mathematics. Our experienced volunteers provide personalized help.",
       status: "Upcoming"
     },
     {
-      title: "Pi Day Celebration",
-      date: "March 14, 2024",
-      location: "School Auditorium",
-      description: "Annual celebration of Pi Day with mathematical presentations, games, and plenty of pie!",
-      status: "Recent"
+      title: "High School Math Contest",
+      date: "December 2024",
+      location: "Western High School",
+      description: "Annual inter-school mathematics competition featuring challenging problems across all high school math topics.",
+      status: "Upcoming"
     },
     {
-      title: "Mathematical Modeling Competition",
-      date: "February 28, 2024",
-      location: "University of Calgary",
-      description: "Our team competed in the regional mathematical modeling competition and placed 3rd overall.",
-      status: "Recent"
+      title: "End of Year Mathematics Get Together",
+      date: "May 2024",
+      location: "School Auditorium",
+      description: "Celebrate the year's achievements with presentations, awards ceremony, and mathematical games for all members.",
+      status: "Upcoming"
     }
   ];
 

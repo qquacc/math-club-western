@@ -5,71 +5,74 @@ const TeamSection = () => {
   const teamMembers = [
     {
       name: "Dr. Sarah Johnson",
-      position: "Club Director & Mathematics Teacher",
-      description: "PhD in Mathematics from University of Calgary. 15+ years of teaching experience and former AMC coordinator.",
-      image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=300&h=300&fit=crop&crop=face"
+      position: "Faculty Advisor",
+      description: "Mathematics professor with 15 years of experience in competitive mathematics coaching.",
+      image: "/placeholder.svg"
     },
     {
-      name: "Michael Chen",
-      position: "Competition Coordinator",
-      description: "Mathematics graduate and former USAMO qualifier. Specializes in competition preparation and advanced problem solving.",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face"
+      name: "Alex Chen",
+      position: "Club President",
+      description: "Grade 12 student, AMC 12 qualifier, passionate about number theory and combinatorics.",
+      image: "/placeholder.svg"
     },
     {
-      name: "Emily Rodriguez",
-      position: "Student Mentor & Senior Member",
-      description: "Grade 12 student and three-time AMC 12 Distinguished Honor Roll recipient. Passionate about peer tutoring.",
-      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop&crop=face"
+      name: "Emma Rodriguez",
+      position: "Vice President",
+      description: "Grade 11 student, AIME qualifier, specializes in geometry and algebra problem solving.",
+      image: "/placeholder.svg"
     },
     {
-      name: "David Kim",
-      position: "Workshop Leader",
-      description: "Recent graduate now studying Mathematics at MIT. Focuses on mathematical modeling and research projects.",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face"
+      name: "Michael Kim",
+      position: "Secretary",
+      description: "Grade 10 student, regional math competition winner, enjoys teaching younger students.",
+      image: "/placeholder.svg"
     },
     {
-      name: "Amanda Thompson",
-      position: "Outreach Coordinator",
-      description: "Organizes community events and manages partnerships with local universities and mathematics organizations.",
-      image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=300&h=300&fit=crop&crop=face"
+      name: "Jessica Wang",
+      position: "Events Coordinator",
+      description: "Grade 12 student, organizes math competitions and workshops for the community.",
+      image: "/placeholder.svg"
     },
     {
-      name: "Alex Martinez",
-      position: "Technology Coordinator",
-      description: "Manages our online platforms and develops interactive tools for mathematical learning and practice.",
-      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&fit=crop&crop=face"
+      name: "David Thompson",
+      position: "Treasurer",
+      description: "Grade 11 student, manages club finances and coordinates fundraising activities.",
+      image: "/placeholder.svg"
     }
   ];
 
   return (
-    <section>
-      <div className="text-center mb-12">
-        <h2 className="text-4xl font-bold text-gray-800 mb-4">Meet Our Team</h2>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          Our dedicated team of educators, mentors, and student leaders
-        </p>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {teamMembers.map((member) => (
-          <Card key={member.name} className="hover:shadow-lg transition-shadow duration-300">
-            <CardHeader className="text-center">
-              <div className="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden">
-                <img 
-                  src={member.image} 
-                  alt={member.name}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <CardTitle className="text-xl">{member.name}</CardTitle>
-              <CardDescription className="text-blue-600 font-semibold">
-                {member.position}
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p className="text-gray-600 text-center">{member.description}</p>
-            </CardContent>
-          </Card>
-        ))}
+    <section className="py-16 bg-gray-50">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold text-blue-600 mb-4">Meet Your Team</h2>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            Our dedicated team of students and faculty work together to create an inspiring 
+            mathematical learning environment.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {teamMembers.map((member) => (
+            <Card key={member.name} className="hover:shadow-lg transition-shadow duration-300">
+              <CardHeader className="text-center">
+                <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+                  <span className="text-white text-2xl font-bold">
+                    {member.name.split(' ').map(n => n[0]).join('')}
+                  </span>
+                </div>
+                <CardTitle className="text-xl">{member.name}</CardTitle>
+                <CardDescription className="text-blue-600 font-semibold">
+                  {member.position}
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600 text-center">
+                  {member.description}
+                </p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
       </div>
     </section>
   );
