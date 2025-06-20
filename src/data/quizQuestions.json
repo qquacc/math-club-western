@@ -1,0 +1,103 @@
+
+[
+  {
+    "question": "Which of the following numbers is the largest?",
+    "answers": [
+      { "answer": "2 x 2 x 2", "correct": true },
+      { "answer": "1 x 2 x 3", "correct": false },
+      { "answer": "1 + 2 + 3", "correct": false },
+      { "answer": "2 + 2 + 2", "correct": false },
+      { "answer": "4 + 3", "correct": false }
+    ]
+  },
+  {
+    "question": "Jack's can of soup has a lid with a radius of 1.25 centimetres. What is the largest possible distance between two points on the rim of the lid?",
+    "answers": [
+      { "answer": "1.25cm", "correct": false },
+      { "answer": "2.5cm", "correct": true },
+      { "answer": "2.6cm", "correct": false },
+      { "answer": "0.625cm", "correct": false },
+      { "answer": "5cm", "correct": false }
+    ]
+  },
+  {
+    "question": "x% of 51 is 120% of 17. Find x.",
+    "answers": [
+      { "answer": "30", "correct": false },
+      { "answer": "35", "correct": false },
+      { "answer": "40", "correct": true },
+      { "answer": "45", "correct": false },
+      { "answer": "50", "correct": false }
+    ]
+  },
+  {
+    "question": "I have a number. I add 5 to it, then multiply it by 3, then subtract 5. I now have a new number. What operations on this new number would result in the original number?",
+    "answers": [
+      { "answer": "Subtract 5, then multiply by 3, then add 5", "correct": false },
+      { "answer": "Add 5, then divide by 3, then add 5", "correct": false },
+      { "answer": "Subtract 5, then divide by 3, then subtract 5", "correct": true },
+      { "answer": "Subtract 10, then divide by 3", "correct": false },
+      { "answer": "Subtract 20, then divide by 3", "correct": false }
+    ]
+  },
+  {
+    "question": "It is given that a + 2b = 27. Find 3a + 9b.",
+    "answers": [
+      { "answer": "27^7", "correct": false },
+      { "answer": "81^6", "correct": false },
+      { "answer": "91^3", "correct": false },
+      { "answer": "27^9", "correct": false },
+      { "answer": "81^7", "correct": true }
+    ]
+  },
+  {
+    "question": "Qixuan has a fair dice with four sides, labeled with the numbers 1, 2, 3 and 4. Zhou has a fair dice with six sides, labeled with the numbers 1, 2, 3, 4, 5, 6. Both of them roll their die at the same time. What is the probability that they roll the same number?",
+    "answers": [
+      { "answer": "1/2", "correct": false },
+      { "answer": "1/3", "correct": false },
+      { "answer": "1/4", "correct": false },
+      { "answer": "1/6", "correct": true },
+      { "answer": "1/12", "correct": false }
+    ]
+  },
+  {
+    "question": "Allen, using his graphing calculator, decides to graph out a particular type of linear function that he calls nice. Nice linear functions have the property that when their slope is added to their y-intercept, the sum is exactly 10. Allen realizes that all nice functions pass through a common point. What is the sum of the x-coordinate and y-coordinate of this point?",
+    "answers": [
+      { "answer": "10", "correct": false },
+      { "answer": "11", "correct": true },
+      { "answer": "12", "correct": false },
+      { "answer": "13", "correct": false },
+      { "answer": "14", "correct": false }
+    ]
+  },
+  {
+    "question": "Ruby starts at point A, and must reach point B. She can only move down and right. How many ways can she do so?",
+    "answers": [
+      { "answer": "15", "correct": false },
+      { "answer": "16", "correct": false },
+      { "answer": "17", "correct": false },
+      { "answer": "18", "correct": false },
+      { "answer": "19", "correct": true }
+    ]
+  },
+  {
+    "question": "A palindrome is a number that is read the same backwards and forwards (e.g 121, 99, and 5). Can two (initial) palindromes add to another (resultant) palindrome?",
+    "answers": [
+      { "answer": "Yes, but one of the initial palindromes must be a one-digit number", "correct": false },
+      { "answer": "Yes, but only when both initial palindromes contain at least one digit less than 6", "correct": false },
+      { "answer": "Yes, but at least one of the initial palindromes must contain a digit less than 6", "correct": true },
+      { "answer": "Yes, and the resultant palindrome is never prime", "correct": false },
+      { "answer": "No, two palindromes cannot add to another palindrome", "correct": false }
+    ]
+  },
+  {
+    "question": "How many positive integers a with 1<a < 100 exist such that both a and a+1 are numbers that have no other prime factors other than 2, 3, or 7?",
+    "answers": [
+      { "answer": "3", "correct": false },
+      { "answer": "5", "correct": false },
+      { "answer": "7", "correct": true },
+      { "answer": "9", "correct": false },
+      { "answer": "11", "correct": false }
+    ]
+  }
+]

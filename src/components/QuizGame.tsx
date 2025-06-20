@@ -1,0 +1,176 @@
+
+import { useState, useEffect } from 'react';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Progress } from '@/components/ui/progress';
+import quizData from '@/data/quizQuestions.json';
+
+interface Answer {
+  answer: string;
+  correct: boolean;
+}
+
+interface Question {
+  question: string;
+  answers: Answer[];
+}
+
+const QuizGame = () => {
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [score, setScore] = useState(0);
+  const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
+  const [showResult, setShowResult] = useState(false);
+  const [questions, setQuestions] = useState<Question[]>([]);
+  const [quizCompleted, setQuizCompleted] = useState(false);
+
+  useEffect(() => {
+    // Shuffle questions and answers when component mounts
+    const shuffledQuestions = [...quizData].sort(() => Math.random() - 0.5);
+    const questionsWithShuffledAnswers = shuffledQuestions.map(q => ({
+      ...q,
+      answers: [...q.answers].sort(() => Math.random() - 0.5)
+    }));
+    setQuestions(questionsWithShuffledAnswers);
+  }, []);
+
+  const handleAnswerClick = (answerIndex: number) => {
+    if (selectedAnswer !== null) return;
+    
+    setSelectedAnswer(answerIndex);
+    setShowResult(true);
+    
+    if (questions[currentQuestion].answers[answerIndex].correct) {
+      setScore(score + 1);
+    }
+  };
+
+  const handleNextQuestion = () => {
+    if (currentQuestion + 1 < questions.length) {
+      setCurrentQuestion(currentQuestion + 1);
+      setSelectedAnswer(null);
+      setShowResult(false);
+    } else {
+      setQuizCompleted(true);
+    }
+  };
+
+  const resetQuiz = () => {
+    setCurrentQuestion(0);
+    setScore(0);
+    setSelectedAnswer(null);
+    setShowResult(false);
+    setQuizCompleted(false);
+    
+    // Reshuffle questions and answers
+    const shuffledQuestions = [...quizData].sort(() => Math.random() - 0.5);
+    const questionsWithShuffledAnswers = shuffledQuestions.map(q => ({
+      ...q,
+      answers: [...q.answers].sort(() => Math.random() - 0.5)
+    }));
+    setQuestions(questionsWithShuffledAnswers);
+  };
+
+  if (questions.length === 0) {
+    return <div className="text-center">Loading quiz...</div>;
+  }
+
+  if (quizCompleted) {
+    const percentage = Math.round((score / questions.length) * 100);
+    return (
+      <Card className="max-w-2xl mx-auto">
+        <CardHeader className="text-center">
+          <CardTitle className="text-3xl">Quiz Completed!</CardTitle>
+          <CardDescription className="text-xl">
+            Your final score: {score} out of {questions.length} ({percentage}%)
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="text-center">
+          <div className="mb-6">
+            {percentage >= 80 ? (
+              <p className="text-green-600 text-lg">Excellent work! You have a strong grasp of these mathematical concepts.</p>
+            ) : percentage >= 60 ? (
+              <p className="text-yellow-600 text-lg">Good effort! Keep practicing to improve your skills.</p>
+            ) : (
+              <p className="text-red-600 text-lg">Keep studying! Practice makes perfect in mathematics.</p>
+            )}
+          </div>
+          <Button onClick={resetQuiz} size="lg">
+            Take Quiz Again
+          </Button>
+        </CardContent>
+      </Card>
+    );
+  }
+
+  const currentQ = questions[currentQuestion];
+  const progressValue = ((currentQuestion + 1) / questions.length) * 100;
+
+  return (
+    <div className="max-w-4xl mx-auto">
+      <div className="mb-6">
+        <div className="flex justify-between items-center mb-2">
+          <span className="text-sm text-gray-600">
+            Question {currentQuestion + 1} of {questions.length}
+          </span>
+          <span className="text-sm text-gray-600">
+            Score: {score}/{questions.length}
+          </span>
+        </div>
+        <Progress value={progressValue} className="h-2" />
+      </div>
+
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-xl">{currentQ.question}</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="grid gap-3">
+            {currentQ.answers.map((answer, index) => (
+              <Button
+                key={index}
+                variant={
+                  selectedAnswer === null ? "outline" :
+                  answer.correct ? "default" :
+                  selectedAnswer === index ? "destructive" : "outline"
+                }
+                className={`p-4 h-auto text-left justify-start ${
+                  selectedAnswer === null ? "hover:bg-blue-50" : ""
+                } ${
+                  showResult && answer.correct ? "bg-green-100 border-green-500 text-green-700" : ""
+                } ${
+                  showResult && selectedAnswer === index && !answer.correct ? "bg-red-100 border-red-500 text-red-700" : ""
+                }`}
+                onClick={() => handleAnswerClick(index)}
+                disabled={selectedAnswer !== null}
+              >
+                <span className="font-medium mr-3">
+                  {String.fromCharCode(65 + index)}.
+                </span>
+                {answer.answer}
+              </Button>
+            ))}
+          </div>
+
+          {showResult && (
+            <div className="mt-6 text-center">
+              <div className="mb-4">
+                {questions[currentQuestion].answers[selectedAnswer!].correct ? (
+                  <p className="text-green-600 font-semibold text-lg">Correct! Well done!</p>
+                ) : (
+                  <p className="text-red-600 font-semibold text-lg">
+                    Incorrect. The correct answer is: {questions[currentQuestion].answers.find(a => a.correct)?.answer}
+                  </p>
+                )}
+              </div>
+              <Button onClick={handleNextQuestion} size="lg">
+                {currentQuestion + 1 < questions.length ? "Next Question" : "Finish Quiz"}
+              </Button>
+            </div>
+          )}
+        </CardContent>
+      </Card>
+    </div>
+  );
+};
+
+export default QuizGame;

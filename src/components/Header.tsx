@@ -1,5 +1,13 @@
 
-import { Calculator, Trophy, BookOpen, Users } from 'lucide-react';
+import { Calculator, ChevronDown } from 'lucide-react';
+import { 
+  DropdownMenu, 
+  DropdownMenuContent, 
+  DropdownMenuItem, 
+  DropdownMenuTrigger 
+} from '@/components/ui/dropdown-menu';
+import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
@@ -8,25 +16,58 @@ const Header = () => {
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <Calculator className="h-8 w-8" />
-            <h1 className="text-2xl font-bold">MathClub Pro</h1>
+            <Link to="/" className="text-2xl font-bold">Calgary High School Math Club</Link>
           </div>
           <nav className="hidden md:flex space-x-6">
-            <a href="#practice" className="flex items-center space-x-2 hover:text-blue-200 transition-colors">
-              <Calculator className="h-4 w-4" />
-              <span>Practice</span>
-            </a>
-            <a href="#leaderboard" className="flex items-center space-x-2 hover:text-blue-200 transition-colors">
-              <Trophy className="h-4 w-4" />
-              <span>Leaderboard</span>
-            </a>
-            <a href="#resources" className="flex items-center space-x-2 hover:text-blue-200 transition-colors">
-              <BookOpen className="h-4 w-4" />
-              <span>Resources</span>
-            </a>
-            <a href="#club" className="flex items-center space-x-2 hover:text-blue-200 transition-colors">
-              <Users className="h-4 w-4" />
-              <span>Club</span>
-            </a>
+            <Link to="/" className="hover:text-blue-200 transition-colors">
+              Home
+            </Link>
+            
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" className="text-white hover:text-blue-200 hover:bg-transparent">
+                  Explore Programs <ChevronDown className="ml-1 h-4 w-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="bg-white text-black">
+                <DropdownMenuItem>
+                  <Link to="/quiz" className="w-full">Practice Quiz</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  Competitions
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  Study Groups
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" className="text-white hover:text-blue-200 hover:bg-transparent">
+                  Events <ChevronDown className="ml-1 h-4 w-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="bg-white text-black">
+                <DropdownMenuItem>
+                  Recent Events
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  Upcoming Competitions
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  Workshops
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            <Link to="/about" className="hover:text-blue-200 transition-colors">
+              About Us
+            </Link>
+            
+            <Link to="/quiz" className="hover:text-blue-200 transition-colors">
+              Practice
+            </Link>
           </nav>
         </div>
       </div>
