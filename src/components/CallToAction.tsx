@@ -16,9 +16,11 @@ const CallToAction = () => {
               Take Practice Quiz
             </Button>
           </Link>
-          <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-600">
-            Contact Us
-          </Button>
+          <Link to="/contact">
+            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-600">
+              Contact Us
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

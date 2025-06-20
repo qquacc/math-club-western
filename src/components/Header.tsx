@@ -29,15 +29,18 @@ const Header = () => {
                   Explore Programs <ChevronDown className="ml-1 h-4 w-4" />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="bg-white text-black">
+              <DropdownMenuContent className="bg-white text-black z-50">
                 <DropdownMenuItem>
-                  <Link to="/quiz" className="w-full">Practice Quiz</Link>
+                  <Link to="/programs/competition-training" className="w-full">Competition Training</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  Competitions
+                  <Link to="/programs/workshops" className="w-full">Problem Solving Workshops</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  Study Groups
+                  <Link to="/programs/tutoring" className="w-full">Peer Tutoring</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Link to="/programs/research" className="w-full">Math Research Projects</Link>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -48,7 +51,7 @@ const Header = () => {
                   Events <ChevronDown className="ml-1 h-4 w-4" />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="bg-white text-black">
+              <DropdownMenuContent className="bg-white text-black z-50">
                 <DropdownMenuItem>
                   <Link to="/events" className="w-full">Recent Events</Link>
                 </DropdownMenuItem>
@@ -67,6 +70,10 @@ const Header = () => {
             
             <Link to="/quiz" className="hover:text-blue-200 transition-colors flex items-center h-10">
               Practice
+            </Link>
+
+            <Link to="/contact" className="hover:text-blue-200 transition-colors flex items-center h-10">
+              Contact Us
             </Link>
           </nav>
         </div>
