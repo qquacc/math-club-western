@@ -1,7 +1,12 @@
-
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Clock, Brain, Trophy } from 'lucide-react';
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Clock, Brain, Trophy } from "lucide-react";
 
 interface QuizStartProps {
   onStart: () => void;
@@ -15,9 +20,12 @@ const QuizStart = ({ onStart }: QuizStartProps) => {
           <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
             <Brain className="h-8 w-8 text-white" />
           </div>
-          <CardTitle className="text-3xl mb-2">Mathematics Practice Quiz</CardTitle>
+          <CardTitle className="text-3xl mb-2">
+            Mathematics Practice Quiz
+          </CardTitle>
           <CardDescription className="text-lg">
-            Test your mathematical skills with our challenging practice questions
+            Test your mathematical skills with practice questions drawn directly
+            from past contests
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
@@ -38,9 +46,11 @@ const QuizStart = ({ onStart }: QuizStartProps) => {
               <span className="text-sm text-gray-600">See your score</span>
             </div>
           </div>
-          
+
           <div className="bg-blue-50 rounded-lg p-4">
-            <h4 className="font-semibold text-blue-800 mb-2">Quiz Instructions:</h4>
+            <h4 className="font-semibold text-blue-800 mb-2">
+              Quiz Instructions:
+            </h4>
             <ul className="text-left text-blue-700 space-y-1">
               <li>• Answer all 10 questions to complete the quiz</li>
               <li>• Each question has 5 multiple choice options</li>
@@ -48,10 +58,10 @@ const QuizStart = ({ onStart }: QuizStartProps) => {
               <li>• Review your results at the end</li>
             </ul>
           </div>
-          
-          <Button 
+
+          <Button
             onClick={onStart}
-            size="lg" 
+            size="lg"
             className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8"
           >
             Start Practice Quiz

@@ -1,10 +1,15 @@
-
-import { useState, useEffect } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Progress } from '@/components/ui/progress';
-import { Timer } from 'lucide-react';
-import quizData from '@/data/quizQuestions.json';
+import { useState, useEffect } from "react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Progress } from "@/components/ui/progress";
+import { Timer } from "lucide-react";
+import quizData from "@/data/quizQuestions.json";
 
 interface Answer {
   answer: string;
@@ -30,9 +35,9 @@ const QuizGame = () => {
   useEffect(() => {
     // Shuffle questions and answers when component mounts
     const shuffledQuestions = [...quizData].sort(() => Math.random() - 0.5);
-    const questionsWithShuffledAnswers = shuffledQuestions.map(q => ({
+    const questionsWithShuffledAnswers = shuffledQuestions.map((q) => ({
       ...q,
-      answers: [...q.answers].sort(() => Math.random() - 0.5)
+      answers: [...q.answers].sort(() => Math.random() - 0.5),
     }));
     setQuestions(questionsWithShuffledAnswers);
     setStartTime(new Date());
@@ -50,7 +55,7 @@ const QuizGame = () => {
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
-    return `${mins}:${secs.toString().padStart(2, '0')}`;
+    return `${mins}:${secs.toString().padStart(2, "0")}`;
   };
 
   const getElapsedTime = () => {
@@ -61,10 +66,10 @@ const QuizGame = () => {
 
   const handleAnswerClick = (answerIndex: number) => {
     if (selectedAnswer !== null) return;
-    
+
     setSelectedAnswer(answerIndex);
     setShowResult(true);
-    
+
     if (questions[currentQuestion].answers[answerIndex].correct) {
       setScore(score + 1);
     }
@@ -89,12 +94,12 @@ const QuizGame = () => {
     setQuizCompleted(false);
     setStartTime(new Date());
     setEndTime(null);
-    
+
     // Reshuffle questions and answers
     const shuffledQuestions = [...quizData].sort(() => Math.random() - 0.5);
-    const questionsWithShuffledAnswers = shuffledQuestions.map(q => ({
+    const questionsWithShuffledAnswers = shuffledQuestions.map((q) => ({
       ...q,
-      answers: [...q.answers].sort(() => Math.random() - 0.5)
+      answers: [...q.answers].sort(() => Math.random() - 0.5),
     }));
     setQuestions(questionsWithShuffledAnswers);
   };
@@ -106,13 +111,14 @@ const QuizGame = () => {
   if (quizCompleted) {
     const percentage = Math.round((score / questions.length) * 100);
     const totalTime = getElapsedTime();
-    
+
     return (
       <Card className="max-w-2xl mx-auto">
         <CardHeader className="text-center">
           <CardTitle className="text-3xl">Quiz Completed!</CardTitle>
           <CardDescription className="text-xl">
-            Your final score: {score} out of {questions.length} ({percentage}%)
+            Your final score is: {score} out of {questions.length} ({percentage}
+            %)
           </CardDescription>
           <div className="flex items-center justify-center gap-2 mt-4">
             <Timer className="h-5 w-5 text-blue-600" />
@@ -124,11 +130,18 @@ const QuizGame = () => {
         <CardContent className="text-center">
           <div className="mb-6">
             {percentage >= 80 ? (
-              <p className="text-green-600 text-lg">Excellent work! You have a strong grasp of these mathematical concepts.</p>
+              <p className="text-green-600 text-lg">
+                Excellent work! You have a strong grasp of these mathematical
+                concepts.
+              </p>
             ) : percentage >= 60 ? (
-              <p className="text-yellow-600 text-lg">Good effort! Keep practicing to improve your skills.</p>
+              <p className="text-yellow-600 text-lg">
+                Good effort! Keep practicing to improve your skills.
+              </p>
             ) : (
-              <p className="text-red-600 text-lg">Keep studying! Practice makes perfect in mathematics.</p>
+              <p className="text-red-600 text-lg">
+                Keep studying! Practice makes perfect in mathematics.
+              </p>
             )}
           </div>
           <Button onClick={resetQuiz} size="lg">
@@ -175,16 +188,24 @@ const QuizGame = () => {
               <Button
                 key={index}
                 variant={
-                  selectedAnswer === null ? "outline" :
-                  answer.correct ? "default" :
-                  selectedAnswer === index ? "destructive" : "outline"
+                  selectedAnswer === null
+                    ? "outline"
+                    : answer.correct
+                    ? "default"
+                    : selectedAnswer === index
+                    ? "destructive"
+                    : "outline"
                 }
                 className={`p-4 h-auto text-left justify-start ${
                   selectedAnswer === null ? "hover:bg-blue-50" : ""
                 } ${
-                  showResult && answer.correct ? "bg-green-100 border-green-500 text-green-700" : ""
+                  showResult && answer.correct
+                    ? "bg-green-100 border-green-500 text-green-700"
+                    : ""
                 } ${
-                  showResult && selectedAnswer === index && !answer.correct ? "bg-red-100 border-red-500 text-red-700" : ""
+                  showResult && selectedAnswer === index && !answer.correct
+                    ? "bg-red-100 border-red-500 text-red-700"
+                    : ""
                 }`}
                 onClick={() => handleAnswerClick(index)}
                 disabled={selectedAnswer !== null}
@@ -201,15 +222,23 @@ const QuizGame = () => {
             <div className="mt-6 text-center">
               <div className="mb-4">
                 {questions[currentQuestion].answers[selectedAnswer!].correct ? (
-                  <p className="text-green-600 font-semibold text-lg">Correct! Well done!</p>
+                  <p className="text-green-600 font-semibold text-lg">
+                    Correct! Well done!
+                  </p>
                 ) : (
                   <p className="text-red-600 font-semibold text-lg">
-                    Incorrect. The correct answer is: {questions[currentQuestion].answers.find(a => a.correct)?.answer}
+                    Incorrect. The correct answer is:{" "}
+                    {
+                      questions[currentQuestion].answers.find((a) => a.correct)
+                        ?.answer
+                    }
                   </p>
                 )}
               </div>
               <Button onClick={handleNextQuestion} size="lg">
-                {currentQuestion + 1 < questions.length ? "Next Question" : "Finish Quiz"}
+                {currentQuestion + 1 < questions.length
+                  ? "Next Question"
+                  : "Finish Quiz"}
               </Button>
             </div>
           )}

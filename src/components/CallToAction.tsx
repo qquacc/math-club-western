@@ -18,14 +18,14 @@ const CallToAction = () => {
               size="lg"
               className="bg-white text-blue-600 hover:bg-gray-100"
             >
-              Take Practice Quiz
+              Take Quiz
             </Button>
           </Link>
           <Link to="/contact">
             <Button
               size="lg"
               variant="outline"
-              className="border-white text-white hover:bg-white hover:text-blue-600"
+              className="border-white text-blue-600 hover:bg-gray-100 hover:text-blue-600"
             >
               Contact Us
             </Button>

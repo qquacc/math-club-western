@@ -1,6 +1,5 @@
-
-import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
@@ -10,18 +9,25 @@ const Hero = () => {
           Ignite Your Passion for Mathematics
         </h1>
         <p className="text-xl mb-8 max-w-3xl mx-auto">
-          Join Calgary's premier high school math club where students explore advanced concepts, 
-          compete in prestigious competitions, and build lifelong friendships through the beauty of mathematics.
+          A cross-school association to offer more mathematics enrichment for
+          high-school students in Calgary
         </p>
         <div className="flex gap-4 justify-center">
-          <Link to="/quiz">
-            <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100">
-              Start Practicing
+          <Link to="/about">
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-white text-blue-600 hover:bg-gray-100 hover:text-blue-600"
+            >
+              Meet Our Team
             </Button>
           </Link>
-          <Link to="/about">
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-600">
-              Meet Our Team
+          <Link to="/quiz">
+            <Button
+              size="lg"
+              className="bg-white text-blue-600 hover:bg-gray-100"
+            >
+              Start Practicing
             </Button>
           </Link>
         </div>
