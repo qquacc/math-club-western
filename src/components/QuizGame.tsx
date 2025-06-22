@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import {
   Card,
@@ -8,7 +9,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { Timer } from "lucide-react";
+import { Timer, ChevronDown, ChevronUp } from "lucide-react";
 import quizData from "@/data/quizQuestions.json";
 
 interface Answer {
@@ -31,6 +32,7 @@ const QuizGame = () => {
   const [startTime, setStartTime] = useState<Date | null>(null);
   const [endTime, setEndTime] = useState<Date | null>(null);
   const [currentTime, setCurrentTime] = useState<Date>(new Date());
+  const [showSolution, setShowSolution] = useState(false);
 
   useEffect(() => {
     // Shuffle questions and answers when component mounts
@@ -80,6 +82,7 @@ const QuizGame = () => {
       setCurrentQuestion(currentQuestion + 1);
       setSelectedAnswer(null);
       setShowResult(false);
+      setShowSolution(false);
     } else {
       setQuizCompleted(true);
       setEndTime(new Date());
@@ -94,6 +97,7 @@ const QuizGame = () => {
     setQuizCompleted(false);
     setStartTime(new Date());
     setEndTime(null);
+    setShowSolution(false);
 
     // Reshuffle questions and answers
     const shuffledQuestions = [...quizData].sort(() => Math.random() - 0.5);
@@ -216,6 +220,30 @@ const QuizGame = () => {
                 {answer.answer}
               </Button>
             ))}
+          </div>
+
+          {/* Solution Button */}
+          <div className="mt-6">
+            <Button 
+              variant="outline" 
+              onClick={() => setShowSolution(!showSolution)}
+              className="flex items-center gap-2"
+            >
+              {showSolution ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+              {showSolution ? "Hide Solution" : "Show Solution"}
+            </Button>
+            
+            {showSolution && (
+              <div className="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                <h4 className="font-semibold text-blue-800 mb-2">Solution:</h4>
+                <p className="text-blue-700">
+                  {/* Placeholder solution - will be edited later */}
+                  The correct answer is: {questions[currentQuestion].answers.find((a) => a.correct)?.answer}
+                  <br />
+                  <em>Detailed solution explanation will be added here.</em>
+                </p>
+              </div>
+            )}
           </div>
 
           {showResult && (

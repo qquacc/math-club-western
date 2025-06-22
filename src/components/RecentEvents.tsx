@@ -2,35 +2,24 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Calendar, MapPin } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import recentEventsData from '@/data/recentEvents.json';
 
 const RecentEvents = () => {
-  const events = [
-    {
-      title: "Math Tutoring for High School Students",
-      date: "July 19, 2024",
-      location: "Central Library",
-      description: "Free tutoring sessions for high school students struggling with mathematics. Our experienced volunteers provide personalized help.",
-      status: "Upcoming"
-    },
-    {
-      title: "High School Math Contest",
-      date: "December 2024",
-      location: "Western High School",
-      description: "Annual inter-school mathematics competition featuring challenging problems across all high school math topics.",
-      status: "Upcoming"
-    },
-    {
-      title: "End of Year Mathematics Get Together",
-      date: "May 2024",
-      location: "School Auditorium",
-      description: "Celebrate the year's achievements with presentations, awards ceremony, and mathematical games for all members.",
-      status: "Upcoming"
-    }
-  ];
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 300);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
-    <section className="py-16 bg-gray-50">
-      <div className="container mx-auto px-4">
+    <section className="py-16 bg-white">
+      <div className={`container mx-auto px-4 transition-all duration-1000 ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+      }`}>
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-gray-800 mb-4">Recent Events</h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -38,7 +27,7 @@ const RecentEvents = () => {
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {events.map((event) => (
+          {recentEventsData.map((event) => (
             <Card key={event.title} className="hover:shadow-lg transition-shadow duration-300">
               <CardHeader>
                 <div className="flex items-center justify-between mb-2">

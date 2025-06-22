@@ -1,4 +1,6 @@
+
 import Header from "@/components/Header";
+import PageHeader from "@/components/PageHeader";
 import {
   Card,
   CardContent,
@@ -7,80 +9,35 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Calendar, MapPin, Clock } from "lucide-react";
+import { useEffect, useState } from "react";
+import recentEventsData from "@/data/recentEvents.json";
 
 const Events = () => {
-  const events = [
-    {
-      title: "Math Tutoring for High School Students",
-      date: "July 19, 2024",
-      time: "2:00 PM - 5:00 PM",
-      location: "Central Library",
-      description:
-        "Free tutoring sessions for high school students struggling with mathematics. Our experienced volunteers provide personalized help with homework, test preparation, and concept reinforcement. No registration required - just drop in!",
-      details: [
-        "Covers all high school math topics",
-        "One-on-one and small group sessions",
-        "Experienced student tutors",
-        "Free of charge",
-      ],
-      image:
-        "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=500&h=300&fit=crop",
-    },
-    {
-      title: "High School Math Contest",
-      date: "December 15, 2024",
-      time: "9:00 AM - 3:00 PM",
-      location: "Western High School",
-      description:
-        "Annual inter-school mathematics competition featuring challenging problems across all high school math topics. Students compete individually and in teams for prizes and recognition.",
-      details: [
-        "Individual and team competitions",
-        "Multiple difficulty levels",
-        "Prizes for top performers",
-        "Lunch provided for participants",
-      ],
-      image:
-        "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500&h=300&fit=crop",
-    },
-    {
-      title: "End of Year Mathematics Get Together",
-      date: "May 25, 2024",
-      time: "6:00 PM - 9:00 PM",
-      location: "School Auditorium",
-      description:
-        "Celebrate the year's achievements with presentations, awards ceremony, and mathematical games for all members. Join us for an evening of mathematics, fun, and community.",
-      details: [
-        "Awards ceremony for outstanding members",
-        "Student presentations on research projects",
-        "Mathematical games and puzzles",
-        "Refreshments and networking",
-      ],
-      image:
-        "https://images.unsplash.com/photo-1466442929976-97f336a657be?w=500&h=300&fit=crop",
-    },
-  ];
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 300);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
       <Header />
 
-      {/* Hero Section with Background Image */}
-      <div className="relative py-24 bg-gradient-to-r from-blue-600 to-purple-700">
-        <div className="absolute inset-0 bg-black opacity-20"></div>
-        <div className="relative container mx-auto px-4 text-center text-white">
-          <h1 className="text-5xl font-bold mb-6">Upcoming Events</h1>
-          <p className="text-xl max-w-3xl mx-auto">
-            Join us for these exciting mathematical events throughout the year.
-            From tutoring sessions to competitions, there's something for
-            everyone!
-          </p>
-        </div>
-      </div>
+      <PageHeader 
+        title="Upcoming Events"
+        subtitle="Join us for these exciting mathematical events throughout the year. From tutoring sessions to competitions, there's something for everyone!"
+        backgroundImage="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1920&h=600&fit=crop"
+      />
 
       <div className="py-16">
-        <div className="container mx-auto px-4">
+        <div className={`container mx-auto px-4 transition-all duration-1000 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}>
           <div className="space-y-12">
-            {events.map((event, index) => (
+            {recentEventsData.map((event, index) => (
               <div
                 key={event.title}
                 className={`flex flex-col ${
