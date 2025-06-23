@@ -1,5 +1,6 @@
 
 import Header from '@/components/Header';
+import PageHeader from '@/components/PageHeader';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Clock, Users, BookOpen, Lightbulb } from 'lucide-react';
 
@@ -34,15 +35,15 @@ const Workshops = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
       <Header />
+      
+      <PageHeader 
+        title="Problem Solving Workshops"
+        subtitle="Weekly sessions focusing on advanced problem-solving techniques and mathematical reasoning."
+        backgroundImage="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1920&h=600&fit=crop"
+      />
+      
       <div className="py-16">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h1 className="text-5xl font-bold text-gray-800 mb-6">Problem Solving Workshops</h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Weekly sessions focusing on advanced problem-solving techniques and mathematical reasoning.
-            </p>
-          </div>
-          
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {workshops.map((workshop) => {
               const IconComponent = workshop.icon;

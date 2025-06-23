@@ -11,6 +11,7 @@ import {
 import { Calendar, MapPin, Clock } from "lucide-react";
 import { useEffect, useState } from "react";
 import recentEventsData from "@/data/recentEvents.json";
+import { calculateDaysUntil, formatDaysUntil } from "@/utils/dateUtils";
 
 const Events = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -32,78 +33,93 @@ const Events = () => {
         backgroundImage="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1920&h=600&fit=crop"
       />
 
-      <div className="py-16">
-        <div className={`container mx-auto px-4 transition-all duration-1000 ${
+      <div className="py-16 relative">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%234f46e5' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          }} />
+        </div>
+        
+        <div className={`relative container mx-auto px-4 transition-all duration-1000 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
           <div className="space-y-12">
-            {recentEventsData.map((event, index) => (
-              <div
-                key={event.title}
-                className={`flex flex-col ${
-                  index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
-                } gap-8 items-center`}
-              >
-                {/* Image Section */}
-                <div className="lg:w-1/2">
-                  <div className="relative overflow-hidden rounded-lg shadow-lg">
-                    <img
-                      src={event.image}
-                      alt={event.title}
-                      className="w-full h-64 lg:h-80 object-cover hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+            {recentEventsData.map((event, index) => {
+              const daysUntil = calculateDaysUntil(event.date);
+              return (
+                <div
+                  key={event.title}
+                  className={`flex flex-col ${
+                    index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
+                  } gap-8 items-center`}
+                >
+                  {/* Image Section */}
+                  <div className="lg:w-1/2">
+                    <div className="relative overflow-hidden rounded-lg shadow-lg">
+                      <img
+                        src={event.image}
+                        alt={event.title}
+                        className="w-full h-64 lg:h-80 object-cover hover:scale-105 transition-transform duration-300"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                      <div className="absolute top-4 right-4">
+                        <span className="px-3 py-1 bg-blue-600 text-white text-sm rounded-full font-medium">
+                          {formatDaysUntil(daysUntil)}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Content Section */}
+                  <div className="lg:w-1/2">
+                    <Card className="hover:shadow-lg transition-shadow duration-300">
+                      <CardHeader>
+                        <CardTitle className="text-2xl mb-2">
+                          {event.title}
+                        </CardTitle>
+                        <div className="flex flex-wrap items-center gap-4 text-gray-600 mb-4">
+                          <div className="flex items-center space-x-2">
+                            <Calendar className="h-5 w-5" />
+                            <span className="font-medium">{event.date}</span>
+                          </div>
+                          <div className="flex items-center space-x-2">
+                            <Clock className="h-5 w-5" />
+                            <span>{event.time}</span>
+                          </div>
+                          <div className="flex items-center space-x-2">
+                            <MapPin className="h-5 w-5" />
+                            <span>{event.location}</span>
+                          </div>
+                        </div>
+                      </CardHeader>
+                      <CardContent>
+                        <CardDescription className="text-gray-700 text-base mb-6">
+                          {event.description}
+                        </CardDescription>
+
+                        <div className="bg-blue-50 rounded-lg p-4">
+                          <h4 className="font-semibold text-blue-800 mb-3">
+                            Event Highlights:
+                          </h4>
+                          <ul className="space-y-2">
+                            {event.details.map((detail, detailIndex) => (
+                              <li
+                                key={detailIndex}
+                                className="flex items-center text-blue-700"
+                              >
+                                <div className="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
+                                {detail}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </CardContent>
+                    </Card>
                   </div>
                 </div>
-
-                {/* Content Section */}
-                <div className="lg:w-1/2">
-                  <Card className="hover:shadow-lg transition-shadow duration-300">
-                    <CardHeader>
-                      <CardTitle className="text-2xl mb-2">
-                        {event.title}
-                      </CardTitle>
-                      <div className="flex flex-wrap items-center gap-4 text-gray-600 mb-4">
-                        <div className="flex items-center space-x-2">
-                          <Calendar className="h-5 w-5" />
-                          <span className="font-medium">{event.date}</span>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                          <Clock className="h-5 w-5" />
-                          <span>{event.time}</span>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                          <MapPin className="h-5 w-5" />
-                          <span>{event.location}</span>
-                        </div>
-                      </div>
-                    </CardHeader>
-                    <CardContent>
-                      <CardDescription className="text-gray-700 text-base mb-6">
-                        {event.description}
-                      </CardDescription>
-
-                      <div className="bg-blue-50 rounded-lg p-4">
-                        <h4 className="font-semibold text-blue-800 mb-3">
-                          Event Highlights:
-                        </h4>
-                        <ul className="space-y-2">
-                          {event.details.map((detail, detailIndex) => (
-                            <li
-                              key={detailIndex}
-                              className="flex items-center text-blue-700"
-                            >
-                              <div className="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
-                              {detail}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>

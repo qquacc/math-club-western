@@ -1,5 +1,6 @@
 
 import Header from '@/components/Header';
+import PageHeader from '@/components/PageHeader';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Trophy, Calendar, Award, Users } from 'lucide-react';
 
@@ -34,15 +35,15 @@ const CompetitionTraining = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
       <Header />
+      
+      <PageHeader 
+        title="Competition Training"
+        subtitle="Prepare for prestigious mathematics competitions with expert guidance and structured training programs."
+        backgroundImage="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1920&h=600&fit=crop"
+      />
+      
       <div className="py-16">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h1 className="text-5xl font-bold text-gray-800 mb-6">Competition Training</h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Prepare for prestigious mathematics competitions with expert guidance and structured training programs.
-            </p>
-          </div>
-          
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {competitions.map((comp) => {
               const IconComponent = comp.icon;

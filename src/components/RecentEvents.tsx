@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Calendar, MapPin } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import recentEventsData from '@/data/recentEvents.json';
+import { calculateDaysUntil, formatDaysUntil } from '@/utils/dateUtils';
 
 const RecentEvents = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -16,8 +17,15 @@ const RecentEvents = () => {
   }, []);
 
   return (
-    <section className="py-16 bg-white">
-      <div className={`container mx-auto px-4 transition-all duration-1000 ${
+    <section className="py-16 bg-white relative">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%234f46e5' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+        }} />
+      </div>
+      
+      <div className={`relative container mx-auto px-4 transition-all duration-1000 ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
       }`}>
         <div className="text-center mb-12">
@@ -27,40 +35,46 @@ const RecentEvents = () => {
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {recentEventsData.map((event) => (
-            <Card key={event.title} className="hover:shadow-lg transition-shadow duration-300">
-              <CardHeader>
-                <div className="flex items-center justify-between mb-2">
-                  <span className={`px-2 py-1 rounded text-sm ${
-                    event.status === 'Upcoming' 
-                      ? 'bg-green-100 text-green-600' 
-                      : 'bg-blue-100 text-blue-600'
-                  }`}>
-                    {event.status}
-                  </span>
-                </div>
-                <CardTitle className="text-xl">{event.title}</CardTitle>
-                <div className="flex items-center space-x-4 text-sm text-gray-600">
-                  <div className="flex items-center space-x-1">
-                    <Calendar className="h-4 w-4" />
-                    <span>{event.date}</span>
+          {recentEventsData.map((event) => {
+            const daysUntil = calculateDaysUntil(event.date);
+            return (
+              <Card key={event.title} className="hover:shadow-lg transition-shadow duration-300">
+                <CardHeader>
+                  <div className="flex items-center justify-between mb-2">
+                    <span className={`px-2 py-1 rounded text-sm ${
+                      event.status === 'Upcoming' 
+                        ? 'bg-green-100 text-green-600' 
+                        : 'bg-blue-100 text-blue-600'
+                    }`}>
+                      {event.status}
+                    </span>
+                    <span className="px-2 py-1 bg-blue-50 text-blue-700 text-xs rounded-full font-medium">
+                      {formatDaysUntil(daysUntil)}
+                    </span>
                   </div>
-                  <div className="flex items-center space-x-1">
-                    <MapPin className="h-4 w-4" />
-                    <span>{event.location}</span>
+                  <CardTitle className="text-xl">{event.title}</CardTitle>
+                  <div className="flex items-center space-x-4 text-sm text-gray-600">
+                    <div className="flex items-center space-x-1">
+                      <Calendar className="h-4 w-4" />
+                      <span>{event.date}</span>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <MapPin className="h-4 w-4" />
+                      <span>{event.location}</span>
+                    </div>
                   </div>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-gray-600 mb-4">
-                  {event.description}
-                </CardDescription>
-                <Button variant="outline" size="sm">
-                  Learn More
-                </Button>
-              </CardContent>
-            </Card>
-          ))}
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-gray-600 mb-4">
+                    {event.description}
+                  </CardDescription>
+                  <Button variant="outline" size="sm">
+                    Learn More
+                  </Button>
+                </CardContent>
+              </Card>
+            );
+          })}
         </div>
       </div>
     </section>
