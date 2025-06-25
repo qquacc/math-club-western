@@ -1,4 +1,3 @@
-
 import Header from "@/components/Header";
 import PageHeader from "@/components/PageHeader";
 import {
@@ -27,16 +26,18 @@ const Events = () => {
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
       <Header />
 
-      <PageHeader 
+      <PageHeader
         title="Upcoming Events"
         subtitle="Join us for these exciting mathematical events throughout the year. From tutoring sessions to competitions, there's something for everyone!"
-        backgroundImage="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1920&h=600&fit=crop"
+        backgroundImage="https://i.ibb.co/G4xLwx0c/IMG-1377.jpg"
       />
 
       <div className="py-16 relative">
-        <div className={`relative container mx-auto px-4 transition-all duration-1000 ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-        }`}>
+        <div
+          className={`relative container mx-auto px-4 transition-all duration-1000 ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          }`}
+        >
           <div className="space-y-12">
             {recentEventsData.map((event, index) => {
               const daysUntil = calculateDaysUntil(event.date);
