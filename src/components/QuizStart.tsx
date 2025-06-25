@@ -24,8 +24,11 @@ const QuizStart = ({ onStart }: QuizStartProps) => {
             Mathematics Practice Quiz
           </CardTitle>
           <CardDescription className="text-lg">
-            Test your mathematical skills with practice questions drawn directly
-            from past CHSMC contests.
+            Are you in middle school and would like to participate in the CHSMC?
+            Although we encourage middle schoolers to attend, problems will
+            require an understanding of Grade 10 content. We recommend trying
+            this short practice quiz with past CHSMC questions to see if you're
+            ready.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
