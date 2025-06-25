@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import {
   Card,
@@ -20,6 +19,8 @@ interface Answer {
 interface Question {
   question: string;
   answers: Answer[];
+  solution: string;
+  difficulty: number;
 }
 
 const QuizGame = () => {
@@ -106,6 +107,15 @@ const QuizGame = () => {
       answers: [...q.answers].sort(() => Math.random() - 0.5),
     }));
     setQuestions(questionsWithShuffledAnswers);
+  };
+
+  const handleShowSolution = () => {
+    setShowSolution(!showSolution);
+    // If solution is being shown and no answer has been selected, mark as incorrect and show result
+    if (!showSolution && selectedAnswer === null) {
+      setShowResult(true);
+      setSelectedAnswer(-1); // -1 means no answer selected
+    }
   };
 
   if (questions.length === 0) {
@@ -224,52 +234,154 @@ const QuizGame = () => {
 
           {/* Solution Button */}
           <div className="mt-6">
-            <Button 
-              variant="outline" 
-              onClick={() => setShowSolution(!showSolution)}
+            <Button
+              variant="outline"
+              onClick={handleShowSolution}
               className="flex items-center gap-2"
             >
-              {showSolution ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+              {showSolution ? (
+                <ChevronUp className="h-4 w-4" />
+              ) : (
+                <ChevronDown className="h-4 w-4" />
+              )}
               {showSolution ? "Hide Solution" : "Show Solution"}
             </Button>
-            
+
             {showSolution && (
               <div className="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
                 <h4 className="font-semibold text-blue-800 mb-2">Solution:</h4>
-                <p className="text-blue-700">
-                  {/* Placeholder solution - will be edited later */}
-                  The correct answer is: {questions[currentQuestion].answers.find((a) => a.correct)?.answer}
+                {/* Show difficulty tag with color based on difficulty */}
+                {(() => {
+                  const diff = questions[currentQuestion].difficulty;
+                  let tagClass = "";
+                  let tagText = "";
+                  let tooltipText = "";
+                  if (diff >= 1 && diff <= 3) {
+                    tagClass = "bg-green-200 text-green-800";
+                    tagText = "Easy";
+                    tooltipText =
+                      "This difficulty level occurs at the beginning of our contests, and usually test curricular content.";
+                  } else if (diff >= 4 && diff <= 7) {
+                    tagClass = "bg-yellow-200 text-yellow-800";
+                    tagText = "Medium";
+                    tooltipText =
+                      "This difficulty level occurs at the middle of our contests. Such questions are designed to challenge students' thinking abilities beyond the classroom.";
+                  } else if (diff >= 8 && diff <= 9) {
+                    tagClass = "bg-orange-200 text-orange-800";
+                    tagText = "Hard";
+                    tooltipText =
+                      "This difficulty level often occurs at the end of our contests, and often require significant creativity or certain insights to solve. ";
+                  } else if (diff == 10) {
+                    tagClass = "bg-red-200 text-red-800";
+                    tagText = "Very Hard";
+                    tooltipText =
+                      "This difficulty level occasionally occurs at the end of our contests, and is often challenging even for those with past experience in math contests.";
+                  } else {
+                    tagClass = "bg-gray-200 text-gray-800";
+                    tagText = "Unknown";
+                    tooltipText = "Difficulty information is not available.";
+                  }
+                  return (
+                    <span
+                      className={`inline-block mb-2 px-3 py-1 rounded-full text-xs font-semibold relative cursor-pointer ${tagClass}`}
+                      style={{ transition: "box-shadow 0.2s" }}
+                      onMouseEnter={(e) => {
+                        // Add shadow on hover
+                        (e.target as HTMLElement).style.boxShadow =
+                          "0 2px 8px rgba(0,0,0,0.18)";
+                        const tooltip = document.createElement("div");
+                        tooltip.textContent = tooltipText;
+                        tooltip.style.position = "fixed";
+                        tooltip.style.zIndex = "9999";
+                        tooltip.style.background = "#fff";
+                        tooltip.style.color = "#222";
+                        tooltip.style.border = "1px solid #ccc";
+                        tooltip.style.borderRadius = "0.375rem";
+                        tooltip.style.padding = "0.5rem 1rem";
+                        tooltip.style.fontSize = "0.85rem";
+                        tooltip.style.boxShadow = "0 2px 8px rgba(0,0,0,0.12)";
+                        tooltip.style.pointerEvents = "none";
+                        tooltip.id = "difficulty-tooltip";
+                        document.body.appendChild(tooltip);
+                        const moveTooltip = (ev: MouseEvent) => {
+                          tooltip.style.left = `${ev.clientX + 12}px`;
+                          tooltip.style.top = `${ev.clientY + 12}px`;
+                        };
+                        moveTooltip(e as unknown as MouseEvent);
+                        window.addEventListener("mousemove", moveTooltip);
+                        (e.target as HTMLElement).setAttribute(
+                          "data-tooltip-listener",
+                          "true"
+                        );
+                        (e.target as any)._moveTooltip = moveTooltip;
+                      }}
+                      onMouseLeave={(e) => {
+                        // Remove shadow on mouse leave
+                        (e.target as HTMLElement).style.boxShadow = "";
+                        const tooltip =
+                          document.getElementById("difficulty-tooltip");
+                        if (tooltip) tooltip.remove();
+                        if (
+                          (e.target as HTMLElement).getAttribute(
+                            "data-tooltip-listener"
+                          )
+                        ) {
+                          window.removeEventListener(
+                            "mousemove",
+                            (e.target as any)._moveTooltip
+                          );
+                          (e.target as HTMLElement).removeAttribute(
+                            "data-tooltip-listener"
+                          );
+                        }
+                      }}
+                    >
+                      Difficulty: {diff ?? "N/A"} / 10 &mdash; {tagText}
+                    </span>
+                  );
+                })()}
+                <p className="text-blue-700 mt-2">
+                  {/* Show the correct answer */}
+                  The correct answer is:{" "}
+                  {
+                    questions[currentQuestion].answers.find((a) => a.correct)
+                      ?.answer
+                  }
                   <br />
-                  <em>Detailed solution explanation will be added here.</em>
+                  {/* Show the solution from the JSON */}
+                  <em>{questions[currentQuestion].solution}</em>
                 </p>
               </div>
             )}
-          </div>
 
-          {showResult && (
-            <div className="mt-6 text-center">
-              <div className="mb-4">
-                {questions[currentQuestion].answers[selectedAnswer!].correct ? (
-                  <p className="text-green-600 font-semibold text-lg">
-                    Correct! Well done!
-                  </p>
-                ) : (
-                  <p className="text-red-600 font-semibold text-lg">
-                    Incorrect. The correct answer is:{" "}
-                    {
-                      questions[currentQuestion].answers.find((a) => a.correct)
-                        ?.answer
-                    }
-                  </p>
-                )}
+            {showResult && (
+              <div className="mt-6 text-center">
+                <div className="mb-4">
+                  {selectedAnswer !== null &&
+                  questions[currentQuestion].answers[selectedAnswer]
+                    ?.correct ? (
+                    <p className="text-green-600 font-semibold text-lg">
+                      Correct! Well done!
+                    </p>
+                  ) : (
+                    <p className="text-red-600 font-semibold text-lg">
+                      Incorrect. The correct answer is:{" "}
+                      {
+                        questions[currentQuestion].answers.find(
+                          (a) => a.correct
+                        )?.answer
+                      }
+                    </p>
+                  )}
+                </div>
+                <Button onClick={handleNextQuestion} size="lg">
+                  {currentQuestion + 1 < questions.length
+                    ? "Next Question"
+                    : "Finish Quiz"}
+                </Button>
               </div>
-              <Button onClick={handleNextQuestion} size="lg">
-                {currentQuestion + 1 < questions.length
-                  ? "Next Question"
-                  : "Finish Quiz"}
-              </Button>
-            </div>
-          )}
+            )}
+          </div>
         </CardContent>
       </Card>
     </div>
