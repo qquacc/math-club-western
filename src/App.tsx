@@ -8,6 +8,7 @@ import { useState } from "react";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Quiz from "./pages/Quiz";
+import Contests from "./pages/Contests";
 import NotFound from "./pages/NotFound";
 import Events from "./pages/Events";
 import Contact from "./pages/Contact";
@@ -29,6 +30,7 @@ const App = () => {
             <Route path="/" element={<Index />} />
             <Route path="/about" element={<About />} />
             <Route path="/quiz" element={<Quiz />} />
+            <Route path="/contests" element={<Contests />} />
             <Route path="/events" element={<Events />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/programs/competition-training" element={<CompetitionTraining />} />

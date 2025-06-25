@@ -1,3 +1,4 @@
+
 import { Calculator, ChevronDown } from "lucide-react";
 import {
   DropdownMenu,
@@ -88,10 +89,10 @@ const Header = () => {
             </Link>
 
             <Link
-              to="/quiz"
+              to="/contests"
               className="hover:text-blue-200 transition-colors flex items-center h-10"
             >
-              Practice
+              Contests
             </Link>
 
             <Link
