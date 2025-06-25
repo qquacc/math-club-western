@@ -45,9 +45,9 @@
       { "answer": "Add 5, then divide by 3, then add 5", "correct": false },
       {
         "answer": "Subtract 5, then divide by 3, then subtract 5",
-        "correct": true
+        "correct": false
       },
-      { "answer": "Subtract 10, then divide by 3", "correct": false },
+      { "answer": "Subtract 10, then divide by 3", "correct": true },
       { "answer": "Subtract 20, then divide by 3", "correct": false }
     ],
     "solution": "Solution placeholder.",

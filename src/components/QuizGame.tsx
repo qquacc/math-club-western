@@ -260,22 +260,22 @@ const QuizGame = () => {
                     tagClass = "bg-green-200 text-green-800";
                     tagText = "Easy";
                     tooltipText =
-                      "This difficulty level occurs at the beginning of our contests, and usually test curricular content.";
-                  } else if (diff >= 4 && diff <= 7) {
+                      "This is an entry-level problem that involves simple curricular content.";
+                  } else if (diff >= 4 && diff <= 6) {
                     tagClass = "bg-yellow-200 text-yellow-800";
                     tagText = "Medium";
                     tooltipText =
-                      "This difficulty level occurs at the middle of our contests. Such questions are designed to challenge students' thinking abilities beyond the classroom.";
-                  } else if (diff >= 8 && diff <= 9) {
+                      "This is a medium-difficulty problem involving some creativity or advanced curricular content.";
+                  } else if (diff >= 7 && diff <= 9) {
                     tagClass = "bg-orange-200 text-orange-800";
                     tagText = "Hard";
                     tooltipText =
-                      "This difficulty level often occurs at the end of our contests, and often require significant creativity or certain insights to solve. ";
-                  } else if (diff == 10) {
+                      "This is a challenging problem that requires significant creativity and insightfulness to solve.";
+                  } else if (diff >= 10) {
                     tagClass = "bg-red-200 text-red-800";
                     tagText = "Very Hard";
                     tooltipText =
-                      "This difficulty level occasionally occurs at the end of our contests, and is often challenging even for those with past experience in math contests.";
+                      "This is a test-your-limits problem that is challenging even for those with past experience in math contests.";
                   } else {
                     tagClass = "bg-gray-200 text-gray-800";
                     tagText = "Unknown";
@@ -336,7 +336,7 @@ const QuizGame = () => {
                         }
                       }}
                     >
-                      Difficulty: {diff ?? "N/A"} / 10 &mdash; {tagText}
+                      Difficulty: {diff ?? "N/A"} &mdash; {tagText}
                     </span>
                   );
                 })()}

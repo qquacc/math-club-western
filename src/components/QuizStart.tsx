@@ -25,7 +25,7 @@ const QuizStart = ({ onStart }: QuizStartProps) => {
           </CardTitle>
           <CardDescription className="text-lg">
             Test your mathematical skills with practice questions drawn directly
-            from past contests
+            from past CHSMC contests.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
@@ -54,8 +54,10 @@ const QuizStart = ({ onStart }: QuizStartProps) => {
             <ul className="text-left text-blue-700 space-y-1">
               <li>• Answer all 10 questions to complete the quiz</li>
               <li>• Each question has 5 multiple choice options</li>
-              <li>• Your time will be tracked automatically</li>
-              <li>• Review your results at the end</li>
+              <li>
+                • Click the solution button to reveal the correct answer and
+                explanation
+              </li>
             </ul>
           </div>
 
