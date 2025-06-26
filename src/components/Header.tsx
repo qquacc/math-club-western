@@ -1,4 +1,3 @@
-
 import { Calculator, ChevronDown } from "lucide-react";
 import {
   DropdownMenu,
@@ -76,8 +75,6 @@ const Header = () => {
                     Recent Events
                   </Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem>Upcoming Competitions</DropdownMenuItem>
-                <DropdownMenuItem>Workshops</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
 

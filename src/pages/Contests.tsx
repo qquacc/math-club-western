@@ -159,7 +159,7 @@ const Contests = () => {
       case "practice":
         return (
           <div className="space-y-6">
-            <h2 className="text-2xl font-bold text-gray-800">Practice</h2>
+            <h2 className="text-2xl font-bold text-gray-800">Are You Ready?</h2>
             {!quizStarted ? (
               <QuizStart onStart={handleStartQuiz} />
             ) : (
@@ -253,7 +253,7 @@ const Contests = () => {
                       setQuizStarted(false);
                     }}
                   >
-                    Practice
+                    Are You Ready?
                   </Button>
                   <Button
                     variant={activeSection === "about" ? "default" : "ghost"}

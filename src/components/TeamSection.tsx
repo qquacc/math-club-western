@@ -5,79 +5,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import teamMembers from "@/data/teamMembers.json";
 
 const TeamSection = () => {
-  const teamMembers = [
-    {
-      name: "Edward Xue",
-      position: "Pro math",
-      description:
-        "Canadian Math Olympiad qualifier, IMO summer camp qualifier.",
-      image: "/placeholder.svg",
-      credentials: [
-        "Canadian Math Olympiad Qualifier",
-        "IMO Summer Camp Qualifier",
-        "Cool guy",
-      ],
-    },
-    {
-      name: "Alex Chen",
-      position: "Club President",
-      description:
-        "Grade 12 student, AMC 12 qualifier, passionate about number theory and combinatorics.",
-      image: "/placeholder.svg",
-      credentials: [
-        "AMC 12 Qualifier",
-        "Number Theory Enthusiast",
-        "Club President",
-      ],
-    },
-    {
-      name: "Emma Rodriguez",
-      position: "Vice President",
-      description:
-        "Grade 11 student, AIME qualifier, specializes in geometry and algebra problem solving.",
-      image: "/placeholder.svg",
-      credentials: ["AIME Qualifier", "Geometry Specialist", "Vice President"],
-    },
-    {
-      name: "Michael Kim",
-      position: "Secretary",
-      description:
-        "Grade 10 student, regional math competition winner, enjoys teaching younger students.",
-      image: "/placeholder.svg",
-      credentials: [
-        "Regional Math Competition Winner",
-        "Youth Math Instructor",
-        "Secretary",
-      ],
-    },
-    {
-      name: "Jessica Wang",
-      position: "Events Coordinator",
-      description:
-        "Grade 12 student, organizes math competitions and workshops for the community.",
-      image: "/placeholder.svg",
-      credentials: [
-        "Events Organizer",
-        "Workshop Leader",
-        "Community Volunteer",
-      ],
-    },
-    {
-      name: "David Thompson",
-      position: "Treasurer",
-      description:
-        "Grade 11 student, manages club finances and coordinates fundraising activities.",
-      image: "/placeholder.svg",
-      credentials: [
-        "Club Treasurer",
-        "Fundraising Coordinator",
-        "Financial Planning",
-      ],
-    },
-  ];
-
   return (
     <section className="py-16 bg-gray-50">
       <div className="container mx-auto px-4">
