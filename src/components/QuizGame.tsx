@@ -21,6 +21,7 @@ interface Question {
   answers: Answer[];
   solution: string;
   difficulty: number;
+  image?: string; // Optional image field
 }
 
 const QuizGame = () => {
@@ -195,6 +196,14 @@ const QuizGame = () => {
       <Card>
         <CardHeader>
           <CardTitle className="text-xl">{currentQ.question}</CardTitle>
+          {/* Render image if present */}
+          {currentQ.image && (
+            <img
+              src={currentQ.image}
+              alt="Question illustration"
+              className="my-4 mx-auto max-h-64 rounded shadow"
+            />
+          )}
         </CardHeader>
         <CardContent>
           <div className="grid gap-3">
@@ -336,7 +345,7 @@ const QuizGame = () => {
                         }
                       }}
                     >
-                      Difficulty: {diff ?? "N/A"} &mdash; {tagText}
+                      Difficulty: {diff ?? "N/A"}/10 &mdash; {tagText}
                     </span>
                   );
                 })()}
