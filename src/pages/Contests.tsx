@@ -148,14 +148,15 @@ const Contests = () => {
                   </TableCell>
                   <TableCell>
                     <Link
-                      to="https://drive.google.com/file/d/1wgC3hzVTJTuL60yplk1odxJrdBtPlr0M/view?usp=sharing"
+                      to="/events/review-2025"
                       className="text-blue-500 hover:underline"
                     >
-                      CHSMC 2025 Released
+                      CHSMC 2025 Event Review
                     </Link>
                   </TableCell>
                 </TableRow>
                 <TableRow>
+                  <TableCell>-</TableCell>
                   <TableCell>-</TableCell>
                   <TableCell>-</TableCell>
                   <TableCell>-</TableCell>
