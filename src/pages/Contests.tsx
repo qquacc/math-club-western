@@ -145,6 +145,14 @@ const Contests = () => {
                       CHSMC 2025 Solutions
                     </Link>
                   </TableCell>
+                  <TableCell>
+                    <Link
+                      to="https://drive.google.com/file/d/1wgC3hzVTJTuL60yplk1odxJrdBtPlr0M/view?usp=sharing"
+                      className="text-blue-500 hover:underline"
+                    >
+                      CHSMC 2025 Released
+                    </Link>
+                  </TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell>-</TableCell>
