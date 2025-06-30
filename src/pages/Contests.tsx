@@ -117,6 +117,7 @@ const Contests = () => {
                   <TableHead>MC/NR Problems</TableHead>
                   <TableHead>Math Battles Problems</TableHead>
                   <TableHead>Solutions</TableHead>
+                  <TableHead>Release + Photos</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
