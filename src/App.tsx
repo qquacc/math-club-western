@@ -25,7 +25,7 @@ const App = () => {
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <BrowserRouter basename="/math-club-western">
+        <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/about" element={<About />} />
@@ -34,7 +34,10 @@ const App = () => {
             <Route path="/events" element={<Events />} />
             <Route path="/events/review-2025" element={<EventReview2025 />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/programs/competition-training" element={<CompetitionTraining />} />
+            <Route
+              path="/programs/competition-training"
+              element={<CompetitionTraining />}
+            />
             <Route path="/programs/workshops" element={<Workshops />} />
             <Route path="/programs/tutoring" element={<Tutoring />} />
             <Route path="/programs/research" element={<Research />} />
