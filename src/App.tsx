@@ -20,12 +20,16 @@ import EventReview2025 from "./pages/events/EventReview2025";
 const App = () => {
   const [queryClient] = useState(() => new QueryClient());
 
+  // Dynamically set basename for GitHub Pages or local
+  const isProd = process.env.NODE_ENV === "production";
+  const basename = isProd ? "/math-club-western" : undefined;
+
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <BrowserRouter>
+        <BrowserRouter basename={basename}>
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/about" element={<About />} />
