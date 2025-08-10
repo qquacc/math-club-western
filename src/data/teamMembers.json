@@ -1,13 +1,13 @@
 [
   {
     "name": "Edward Xue",
-    "position": "Pro math",
-    "description": "Canadian Math Olympiad qualifier, IMO summer camp qualifier.",
-    "image": "https://live.staticflickr.com/65535/54710883758_df5e40760b_b.jpg",
+    "position": "Club President",
+    "description": "Hi, I'm Edward!",
+    "image": "https://live.staticflickr.com/65535/54712667039_6da63a8fc6_q.jpg",
     "credentials": [
-      "Canadian Math Olympiad Qualifier",
-      "IMO Summer Camp Qualifier",
-      "Cool guy"
+      "Canadian Math Olympiad and IMO Training Camp Qualifier",
+      "AHSMC 2025 Award Ceremony Attendee",
+      "Mathcamp 2025"
     ]
   },
   {
@@ -29,25 +29,25 @@
     "credentials": ["AIME Qualifier", "Geometry Specialist", "Vice President"]
   },
   {
-    "name": "Michael Kim",
+    "name": "Erika Shan",
     "position": "Secretary",
-    "description": "Grade 10 student, regional math competition winner, enjoys teaching younger students.",
-    "image": "/placeholder.svg",
+    "description": "I’m Erika Shan, and I recently graduated from Henry Wise Wood High School as a partial IB student. I am now a student at University of Waterloo for Math.",
+    "image": "https://live.staticflickr.com/65535/54712762030_ebc0952384_q.jpg",
     "credentials": [
-      "Regional Math Competition Winner",
-      "Youth Math Instructor",
-      "Secretary"
+      "Invited to EMACs workshop",
+      "Invited to Math Prize for Girls based on AMC scores",
+      "5th in province for Alberta High School Math Contest"
     ]
   },
   {
-    "name": "Jessica Wang",
+    "name": "Ella Zhang",
     "position": "Events Coordinator",
-    "description": "Grade 12 student, organizes math competitions and workshops for the community.",
-    "image": "/placeholder.svg",
+    "description": "Hello! I’m Ella, a Grade 12 student from Western Canada High School. I love tackling challenging math problems, and I hope you enjoy participating in our contest!",
+    "image": "https://live.staticflickr.com/65535/54712653909_8ef201dd5e_q.jpg",
     "credentials": [
-      "Events Organizer",
-      "Workshop Leader",
-      "Community Volunteer"
+      "Participant in the 2025 Waterloo Auckland workshop",
+      "Honour roll / distinction in various math contests",
+      "Memorized 50 digits of pi"
     ]
   },
   {
