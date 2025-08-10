@@ -1,4 +1,4 @@
-import { Calculator, ChevronDown } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,7 +14,11 @@ const Header = () => {
       <div className="container mx-auto px-4 py-6">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
-            <Calculator className="h-8 w-8" />
+            <img
+              src="https://live.staticflickr.com/65535/54710883758_df5e40760b_b.jpg"
+              alt="Math Club Logo"
+              className="h-8 w-8 rounded-full object-cover"
+            />
             <Link to="/" className="text-2xl font-bold">
               Students United by Mathematics
             </Link>

@@ -28,12 +28,21 @@ const TeamSection = () => {
             >
               <CardHeader className="text-center">
                 <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
-                  <span className="text-white text-2xl font-bold">
-                    {member.name
-                      .split(" ")
-                      .map((n) => n[0])
-                      .join("")}
-                  </span>
+                  {member.image &&
+                  member.image !== "" &&
+                  member.image !== "/placeholder.svg" ? (
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className="w-full h-full object-cover rounded-full"
+                    />
+                  ) : (
+                    <img
+                      src="https://live.staticflickr.com/65535/54710883758_df5e40760b_b.jpg"
+                      alt={member.name}
+                      className="w-full h-full object-cover rounded-full"
+                    />
+                  )}
                 </div>
                 <CardTitle className="text-xl">{member.name}</CardTitle>
                 <CardDescription className="text-blue-600 font-semibold">

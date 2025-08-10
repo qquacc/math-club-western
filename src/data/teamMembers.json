@@ -3,7 +3,7 @@
     "name": "Edward Xue",
     "position": "Pro math",
     "description": "Canadian Math Olympiad qualifier, IMO summer camp qualifier.",
-    "image": "/placeholder.svg",
+    "image": "https://live.staticflickr.com/65535/54710883758_df5e40760b_b.jpg",
     "credentials": [
       "Canadian Math Olympiad Qualifier",
       "IMO Summer Camp Qualifier",
@@ -11,10 +11,10 @@
     ]
   },
   {
-    "name": "Alex Chen",
+    "name": "Jack Nie",
     "position": "Club President",
     "description": "Grade 12 student, AMC 12 qualifier, passionate about number theory and combinatorics.",
-    "image": "/placeholder.svg",
+    "image": "https://live.staticflickr.com/65535/54710269163_64830d6b28.jpg",
     "credentials": [
       "AMC 12 Qualifier",
       "Number Theory Enthusiast",
@@ -22,7 +22,7 @@
     ]
   },
   {
-    "name": "Emma Rodriguez",
+    "name": "Jimmy Yuan",
     "position": "Vice President",
     "description": "Grade 11 student, AIME qualifier, specializes in geometry and algebra problem solving.",
     "image": "/placeholder.svg",
