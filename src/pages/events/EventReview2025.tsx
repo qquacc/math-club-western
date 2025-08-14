@@ -266,7 +266,7 @@ const EventReview2025 = () => {
 
             {/* Horizontal Sliding Carousel */}
             <div className="relative mb-8">
-              <div className="relative h-96 overflow-hidden rounded-lg">
+              <div className="relative h-[600px] overflow-hidden rounded-lg">
                 <div className="flex items-center justify-center h-full relative">
                   {eventImages.map((image, index) => (
                     <div
@@ -276,16 +276,16 @@ const EventReview2025 = () => {
                       <img
                         src={image.src}
                         alt={`Event highlight ${index + 1}`}
-                        className="w-80 h-60 object-cover rounded-lg shadow-lg"
+                        className="w-[640px] h-[480px] object-cover rounded-lg shadow-lg"
                       />
                     </div>
                   ))}
                 </div>
                 
-                {/* Navigation Buttons */}
+                {/* Navigation Buttons - Closer to photo */}
                 <Button
                   onClick={prevImage}
-                  className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 rounded-full p-2 shadow-lg z-20"
+                  className="absolute left-8 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 rounded-full p-2 shadow-lg z-20"
                   size="icon"
                 >
                   <ChevronLeft className="h-6 w-6" />
@@ -293,7 +293,7 @@ const EventReview2025 = () => {
                 
                 <Button
                   onClick={nextImage}
-                  className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 rounded-full p-2 shadow-lg z-20"
+                  className="absolute right-8 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 rounded-full p-2 shadow-lg z-20"
                   size="icon"
                 >
                   <ChevronRight className="h-6 w-6" />
