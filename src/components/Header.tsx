@@ -1,3 +1,4 @@
+
 import { ChevronDown } from "lucide-react";
 import {
   DropdownMenu,
@@ -30,39 +31,6 @@ const Header = () => {
             >
               Home
             </Link>
-
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="ghost"
-                  className="text-white hover:text-blue-200 hover:bg-transparent flex items-center h-10"
-                >
-                  Explore Programs <ChevronDown className="ml-1 h-4 w-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="bg-white text-black z-50">
-                <DropdownMenuItem>
-                  <Link to="/programs/competition-training" className="w-full">
-                    Competition Training
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Link to="/programs/workshops" className="w-full">
-                    Problem Solving Workshops
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Link to="/programs/tutoring" className="w-full">
-                    Peer Tutoring
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Link to="/programs/research" className="w-full">
-                    Math Research Projects
-                  </Link>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
 
             <DropdownMenu>
               <DropdownMenuTrigger asChild>

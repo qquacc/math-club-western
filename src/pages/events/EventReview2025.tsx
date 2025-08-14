@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import PageHeader from "@/components/PageHeader";
@@ -9,10 +10,35 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, MapPin, Users, Trophy, Camera } from "lucide-react";
+import { Calendar, MapPin, Users, Trophy, Camera, ChevronLeft, ChevronRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const EventReview2025 = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const eventImages = [
+    {
+      src: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=800&h=600&fit=crop",
+      caption: "Students deeply engaged in tackling challenging mathematical problems"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1500673922987-e212871fec22?w=800&h=600&fit=crop",
+      caption: "Teams working together during collaborative math battles"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1509228627152-72ae9ae6848d?w=800&h=600&fit=crop",
+      caption: "Celebrating achievements during the award ceremony"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=800&h=600&fit=crop",
+      caption: "The beautiful competition venue at Western Canada High School"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1518005020951-eccb494ad742?w=800&h=600&fit=crop",
+      caption: "Students and educators connecting over shared passion for mathematics"
+    }
+  ];
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -20,6 +46,27 @@ const EventReview2025 = () => {
     }, 300);
     return () => clearTimeout(timer);
   }, []);
+
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % eventImages.length);
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + eventImages.length) % eventImages.length);
+  };
+
+  const getImageStyle = (index: number) => {
+    const currentIndex = currentImageIndex;
+    const totalImages = eventImages.length;
+    
+    if (index === currentIndex) {
+      return "scale-100 opacity-100 z-10";
+    } else if (index === (currentIndex + 1) % totalImages || index === (currentIndex - 1 + totalImages) % totalImages) {
+      return "scale-75 opacity-50 z-5 blur-sm";
+    } else {
+      return "scale-50 opacity-0 z-0";
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
@@ -199,7 +246,7 @@ const EventReview2025 = () => {
             </div>
           </div>
 
-          {/* Event Highlights Gallery */}
+          {/* Event Highlights with Carousel */}
           <div
             className={`mb-12 transition-all duration-1000 delay-300 ${
               isVisible
@@ -217,95 +264,65 @@ const EventReview2025 = () => {
               </p>
             </div>
 
-            {/* Main Event Images */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-              <Card className="overflow-hidden hover:shadow-xl transition-shadow duration-300">
-                <div className="aspect-video">
-                  <img
-                    src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=800&h=600&fit=crop"
-                    alt="Students working on problems"
-                    className="w-full h-full object-cover"
-                  />
+            {/* Horizontal Sliding Carousel */}
+            <div className="relative mb-8">
+              <div className="relative h-96 overflow-hidden rounded-lg">
+                <div className="flex items-center justify-center h-full relative">
+                  {eventImages.map((image, index) => (
+                    <div
+                      key={index}
+                      className={`absolute transition-all duration-500 ease-in-out ${getImageStyle(index)}`}
+                    >
+                      <img
+                        src={image.src}
+                        alt={`Event highlight ${index + 1}`}
+                        className="w-80 h-60 object-cover rounded-lg shadow-lg"
+                      />
+                    </div>
+                  ))}
                 </div>
-                <CardContent className="p-6">
-                  <CardTitle className="text-xl mb-2">
-                    Focused Problem Solving
-                  </CardTitle>
-                  <CardDescription>
-                    Students deeply engaged in tackling challenging mathematical
-                    problems with concentration and determination.
-                  </CardDescription>
-                </CardContent>
-              </Card>
-
-              <Card className="overflow-hidden hover:shadow-xl transition-shadow duration-300">
-                <div className="aspect-video">
-                  <img
-                    src="https://images.unsplash.com/photo-1500673922987-e212871fec22?w=800&h=600&fit=crop"
-                    alt="Math battles session"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <CardContent className="p-6">
-                  <CardTitle className="text-xl mb-2">
-                    Collaborative Math Battles
-                  </CardTitle>
-                  <CardDescription>
-                    Teams working together to present their solutions and
-                    mathematical reasoning to judges and peers.
-                  </CardDescription>
-                </CardContent>
-              </Card>
+                
+                {/* Navigation Buttons */}
+                <Button
+                  onClick={prevImage}
+                  className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 rounded-full p-2 shadow-lg z-20"
+                  size="icon"
+                >
+                  <ChevronLeft className="h-6 w-6" />
+                </Button>
+                
+                <Button
+                  onClick={nextImage}
+                  className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 rounded-full p-2 shadow-lg z-20"
+                  size="icon"
+                >
+                  <ChevronRight className="h-6 w-6" />
+                </Button>
+              </div>
+              
+              {/* Caption */}
+              <div className="text-center mt-4">
+                <p className="text-lg text-gray-700 font-medium">
+                  {eventImages[currentImageIndex].caption}
+                </p>
+              </div>
             </div>
 
-            {/* Additional Event Images */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <Card className="overflow-hidden hover:shadow-lg transition-shadow duration-300">
-                <div className="aspect-square">
+            {/* Hosting Team Photo */}
+            <div className="mt-8">
+              <Card className="overflow-hidden">
+                <div className="aspect-video">
                   <img
-                    src="https://images.unsplash.com/photo-1509228627152-72ae9ae6848d?w=400&h=400&fit=crop"
-                    alt="Award ceremony"
+                    src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&h=675&fit=crop"
+                    alt="Hosting team photo"
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <CardContent className="p-4">
-                  <CardTitle className="text-lg">Award Ceremony</CardTitle>
-                  <CardDescription className="text-sm">
-                    Celebrating achievements and recognizing mathematical
-                    excellence
-                  </CardDescription>
-                </CardContent>
-              </Card>
-
-              <Card className="overflow-hidden hover:shadow-lg transition-shadow duration-300">
-                <div className="aspect-square">
-                  <img
-                    src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=400&h=400&fit=crop"
-                    alt="Competition venue"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <CardContent className="p-4">
-                  <CardTitle className="text-lg">Competition Venue</CardTitle>
-                  <CardDescription className="text-sm">
-                    The beautiful Calgary Central High School hosting our event
-                  </CardDescription>
-                </CardContent>
-              </Card>
-
-              <Card className="overflow-hidden hover:shadow-lg transition-shadow duration-300">
-                <div className="aspect-square">
-                  <img
-                    src="https://images.unsplash.com/photo-1518005020951-eccb494ad742?w=400&h=400&fit=crop"
-                    alt="Networking and refreshments"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <CardContent className="p-4">
-                  <CardTitle className="text-lg">Community Building</CardTitle>
-                  <CardDescription className="text-sm">
-                    Students and educators connecting over shared passion for
-                    mathematics
+                <CardContent className="p-6">
+                  <CardTitle className="text-2xl mb-2">Our Amazing Hosting Team</CardTitle>
+                  <CardDescription className="text-lg">
+                    The dedicated volunteers and organizers who made this incredible event possible, 
+                    working tirelessly behind the scenes to ensure every participant had an exceptional experience.
                   </CardDescription>
                 </CardContent>
               </Card>
