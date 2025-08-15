@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import PageHeader from "@/components/PageHeader";
@@ -10,7 +9,15 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, MapPin, Users, Trophy, Camera, ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  Calendar,
+  MapPin,
+  Users,
+  Trophy,
+  Camera,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const EventReview2025 = () => {
@@ -20,24 +27,26 @@ const EventReview2025 = () => {
   const eventImages = [
     {
       src: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=800&h=600&fit=crop",
-      caption: "Students deeply engaged in tackling challenging mathematical problems"
+      caption:
+        "Students deeply engaged in tackling challenging mathematical problems",
     },
     {
       src: "https://images.unsplash.com/photo-1500673922987-e212871fec22?w=800&h=600&fit=crop",
-      caption: "Teams working together during collaborative math battles"
+      caption: "Teams working together during collaborative math battles",
     },
     {
       src: "https://images.unsplash.com/photo-1509228627152-72ae9ae6848d?w=800&h=600&fit=crop",
-      caption: "Celebrating achievements during the award ceremony"
+      caption: "Celebrating achievements during the award ceremony",
     },
     {
       src: "https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=800&h=600&fit=crop",
-      caption: "The beautiful competition venue at Western Canada High School"
+      caption: "The beautiful competition venue at Western Canada High School",
     },
     {
       src: "https://images.unsplash.com/photo-1518005020951-eccb494ad742?w=800&h=600&fit=crop",
-      caption: "Students and educators connecting over shared passion for mathematics"
-    }
+      caption:
+        "Students and educators connecting over shared passion for mathematics",
+    },
   ];
 
   useEffect(() => {
@@ -52,16 +61,21 @@ const EventReview2025 = () => {
   };
 
   const prevImage = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + eventImages.length) % eventImages.length);
+    setCurrentImageIndex(
+      (prev) => (prev - 1 + eventImages.length) % eventImages.length
+    );
   };
 
   const getImageStyle = (index: number) => {
     const currentIndex = currentImageIndex;
     const totalImages = eventImages.length;
-    
+
     if (index === currentIndex) {
       return "scale-100 opacity-100 z-10";
-    } else if (index === (currentIndex + 1) % totalImages || index === (currentIndex - 1 + totalImages) % totalImages) {
+    } else if (
+      index === (currentIndex + 1) % totalImages ||
+      index === (currentIndex - 1 + totalImages) % totalImages
+    ) {
       return "scale-75 opacity-50 z-5 blur-sm";
     } else {
       return "scale-50 opacity-0 z-0";
@@ -271,7 +285,9 @@ const EventReview2025 = () => {
                   {eventImages.map((image, index) => (
                     <div
                       key={index}
-                      className={`absolute transition-all duration-500 ease-in-out ${getImageStyle(index)}`}
+                      className={`absolute transition-all duration-500 ease-in-out ${getImageStyle(
+                        index
+                      )}`}
                     >
                       <img
                         src={image.src}
@@ -281,7 +297,7 @@ const EventReview2025 = () => {
                     </div>
                   ))}
                 </div>
-                
+
                 {/* Navigation Buttons - Closer to photo */}
                 <Button
                   onClick={prevImage}
@@ -290,7 +306,7 @@ const EventReview2025 = () => {
                 >
                   <ChevronLeft className="h-6 w-6" />
                 </Button>
-                
+
                 <Button
                   onClick={nextImage}
                   className="absolute right-8 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 rounded-full p-2 shadow-lg z-20"
@@ -299,7 +315,7 @@ const EventReview2025 = () => {
                   <ChevronRight className="h-6 w-6" />
                 </Button>
               </div>
-              
+
               {/* Caption */}
               <div className="text-center mt-4">
                 <p className="text-lg text-gray-700 font-medium">
@@ -313,16 +329,20 @@ const EventReview2025 = () => {
               <Card className="overflow-hidden">
                 <div className="aspect-video">
                   <img
-                    src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&h=675&fit=crop"
+                    src="https://live.staticflickr.com/65535/54719545926_f22c934b65_b.jpg"
                     alt="Hosting team photo"
                     className="w-full h-full object-cover"
                   />
                 </div>
                 <CardContent className="p-6">
-                  <CardTitle className="text-2xl mb-2">Our Amazing Hosting Team</CardTitle>
+                  <CardTitle className="text-2xl mb-2">
+                    Our Amazing Hosting Team
+                  </CardTitle>
                   <CardDescription className="text-lg">
-                    The dedicated volunteers and organizers who made this incredible event possible, 
-                    working tirelessly behind the scenes to ensure every participant had an exceptional experience.
+                    The dedicated volunteers and organizers who made this
+                    incredible event possible, working tirelessly behind the
+                    scenes to ensure every participant had an exceptional
+                    experience.
                   </CardDescription>
                 </CardContent>
               </Card>

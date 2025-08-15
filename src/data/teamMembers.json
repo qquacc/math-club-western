@@ -23,10 +23,14 @@
   },
   {
     "name": "Jimmy Yuan",
-    "position": "Vice President",
+    "position": "Content Team Lead",
     "description": "Grade 11 student, AIME qualifier, specializes in geometry and algebra problem solving.",
-    "image": "/placeholder.svg",
-    "credentials": ["AIME Qualifier", "Geometry Specialist", "Vice President"]
+    "image": "https://live.staticflickr.com/65535/54719966580_0abdc0282e_q.jpg",
+    "credentials": [
+      "Canada IMO training camp 2024",
+      "4x AIME qualifier",
+      "2x CMO qualifier"
+    ]
   },
   {
     "name": "Erika Shan",
@@ -51,14 +55,14 @@
     ]
   },
   {
-    "name": "David Thompson",
+    "name": "Marlea Wang",
     "position": "Treasurer",
-    "description": "Grade 11 student, manages club finances and coordinates fundraising activities.",
-    "image": "/placeholder.svg",
+    "description": "Hi! I love dancing and travelling the world with my family 🙂",
+    "image": "https://live.staticflickr.com/65535/54718794162_3b3483d3c0_q.jpg",
     "credentials": [
-      "Club Treasurer",
-      "Fundraising Coordinator",
-      "Financial Planning"
+      "Cayley Contest top rank",
+      "Canadian Senior Math Contest top 25% ",
+      "Kangaroo Contest top in Alberta"
     ]
   }
 ]
