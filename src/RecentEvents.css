@@ -1,0 +1,15 @@
+.scroller-track {
+    width: max-content;
+    animation: scroll-left 28s linear infinite;
+  }
+
+.group:hover .scroller-track { animation-play-state: paused; }
+
+@keyframes scroll-left {
+0% { transform: translateX(0); }
+100% { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+.scroller-track { animation: none; }
+}
