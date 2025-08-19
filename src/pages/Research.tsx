@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import PageHeader from "@/components/PageHeader";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Microscope, BookOpen, Users, Award } from "lucide-react";
+import Footer from "@/components/Footer";
 
 const Research = () => {
 	const projects = [
@@ -64,6 +65,9 @@ const Research = () => {
 					</div>
 				</div>
 			</div>
+
+			{/* Footer */}
+			<Footer />
 		</div>
 	);
 };

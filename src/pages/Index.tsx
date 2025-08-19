@@ -46,6 +46,9 @@ const Index = () => {
 
 				{/* Call to Action */}
 				<CallToAction />
+
+				{/* Footer */}
+				<Footer />
 			</div>
 		</div>
 	);

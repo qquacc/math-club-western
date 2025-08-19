@@ -20,6 +20,7 @@ import {
 import QuizStart from "@/components/QuizStart";
 import QuizGame from "@/components/QuizGame";
 import { Link } from "react-router-dom";
+import Footer from "@/components/Footer";
 
 const Contests = () => {
 	const [activeSection, setActiveSection] = useState("upcoming");
@@ -288,6 +289,9 @@ const Contests = () => {
 					</div>
 				</div>
 			</div>
+			
+			{/* Footer */}
+			<Footer />
 		</div>
 	);
 };

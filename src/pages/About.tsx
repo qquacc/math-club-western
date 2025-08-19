@@ -2,6 +2,7 @@
 import Header from "@/components/Header";
 import PageHeader from "@/components/PageHeader";
 import TeamSection from "@/components/TeamSection";
+import Footer from "@/components/Footer";
 
 const About = () => {
 	return (
@@ -17,6 +18,9 @@ const About = () => {
 					<TeamSection />
 				</div>
 			</div>
+
+			{/* Footer */}
+			<Footer />
 		</div>
 	);
 };

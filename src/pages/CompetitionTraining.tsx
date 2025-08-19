@@ -8,6 +8,7 @@ import {
 	CardTitle,
 } from "@/components/ui/card";
 import { Trophy, Calendar, Award, Users } from "lucide-react";
+import Footer from "@/components/Footer";
 
 const CompetitionTraining = () => {
 	const competitions = [
@@ -82,6 +83,9 @@ const CompetitionTraining = () => {
 					</div>
 				</div>
 			</div>
+
+			{/* Footer */}
+			<Footer />
 		</div>
 	);
 };

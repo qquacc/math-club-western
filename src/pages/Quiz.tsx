@@ -3,6 +3,7 @@ import PageHeader from "@/components/PageHeader";
 import QuizGame from "@/components/QuizGame";
 import QuizStart from "@/components/QuizStart";
 import { useState } from "react";
+import Footer from "@/components/Footer";
 
 const Quiz = () => {
 	const [quizStarted, setQuizStarted] = useState(false);
@@ -44,6 +45,8 @@ const Quiz = () => {
 					</div>
 				</>
 			)}
+			{/* Footer */}
+			<Footer />
 		</div>
 	);
 };

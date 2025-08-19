@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import PageHeader from "@/components/PageHeader";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Clock, Users, BookOpen, Lightbulb } from "lucide-react";
+import Footer from "@/components/Footer";
 
 const Workshops = () => {
 	const workshops = [
@@ -72,6 +73,9 @@ const Workshops = () => {
 					</div>
 				</div>
 			</div>
+
+			{/* Footer */}
+			<Footer />
 		</div>
 	);
 };
