@@ -13,61 +13,16 @@ const Index = () => {
 				<Header />
 
 				{/* Hero Section */}
-				<div className="relative bg-gradient-to-br from-gray-50 to-blue-50">
-					{/* Background GIF for Hero */}
-					<div 
-						className="absolute inset-0 opacity-20 bg-cover bg-center"
-						style={{
-							backgroundImage: "url('https://media.giphy.com/media/3oKIPEqDGUULpEU0aQ/giphy.gif')"
-						}}
-					/>
-					<Hero />
-				</div>
-
-				{/* Gradient Divider */}
-				<div className="h-24 bg-gradient-to-b from-white to-white" />
+				<Hero />
 
 				{/* Recent Events Section */}
-				<div className="relative bg-white">
-					{/* Background GIF for Recent Events */}
-					<div 
-						className="absolute inset-0 opacity-10 bg-cover bg-center"
-						style={{
-							backgroundImage: "url('https://media.giphy.com/media/xT9IgzoKnwFNmISR8I/giphy.gif')"
-						}}
-					/>
-					<RecentEvents />
-				</div>
-
-				{/* Gradient Divider */}
-				<div className="h-24 bg-gradient-to-b from-white to-blue-50" />
+				<RecentEvents />
 
 				{/* Features Section */}
-				<div className="relative bg-blue-50">
-					{/* Background GIF for Features */}
-					<div 
-						className="absolute inset-0 opacity-15 bg-cover bg-center"
-						style={{
-							backgroundImage: "url('https://media.giphy.com/media/26tn33aiTi1jkl6H6/giphy.gif')"
-						}}
-					/>
-					<Features />
-				</div>
-
-				{/* Gradient Divider */}
-				<div className="to-purple-150 h-12 bg-gradient-to-b from-blue-50" />
+				<Features />
 
 				{/* Call to Action */}
-				<div className="relative">
-					{/* Background GIF for CTA */}
-					<div 
-						className="absolute inset-0 opacity-20 bg-cover bg-center"
-						style={{
-							backgroundImage: "url('https://media.giphy.com/media/l2Je66zG6mAAZxgqI/giphy.gif')"
-						}}
-					/>
-					<CallToAction />
-				</div>
+				<CallToAction />
 
 				{/* Footer */}
 				<Footer />
