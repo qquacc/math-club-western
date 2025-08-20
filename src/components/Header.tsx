@@ -1,3 +1,4 @@
+
 import { ChevronDown } from "lucide-react";
 import {
   DropdownMenu,
@@ -6,9 +7,20 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Header = () => {
+  const location = useLocation();
+
+  const getLinkClasses = (path: string) => {
+    const isActive = location.pathname === path;
+    return `flex h-10 items-center px-4 rounded-full transition-all duration-300 ${
+      isActive 
+        ? 'bg-white/20 text-white backdrop-blur-sm shadow-lg' 
+        : 'hover:text-blue-200'
+    }`;
+  };
+
   return (
     <header className="bg-gradient-to-r from-blue-600 to-purple-700 text-white shadow-lg">
       <div className="container mx-auto px-4 py-6">
@@ -23,11 +35,8 @@ const Header = () => {
               Students United by Mathematics
             </Link>
           </div>
-          <nav className="hidden items-center space-x-6 md:flex">
-            <Link
-              to="/"
-              className="flex h-10 items-center transition-colors hover:text-blue-200"
-            >
+          <nav className="hidden items-center space-x-2 md:flex">
+            <Link to="/" className={getLinkClasses("/")}>
               Home
             </Link>
 
@@ -35,7 +44,11 @@ const Header = () => {
               <DropdownMenuTrigger asChild>
                 <Button
                   variant="ghost"
-                  className="flex h-10 items-center text-white hover:bg-transparent hover:text-blue-200"
+                  className={`flex h-10 items-center text-white hover:bg-transparent hover:text-blue-200 px-4 rounded-full transition-all duration-300 ${
+                    location.pathname.startsWith('/events') 
+                      ? 'bg-white/20 backdrop-blur-sm shadow-lg' 
+                      : ''
+                  }`}
                 >
                   Events <ChevronDown className="ml-1 h-4 w-4" />
                 </Button>
@@ -49,22 +62,16 @@ const Header = () => {
               </DropdownMenuContent>
             </DropdownMenu>
 
-            <Link
-              to="/about"
-              className="flex h-10 items-center transition-colors hover:text-blue-200"
-            >
+            <Link to="/about" className={getLinkClasses("/about")}>
               About Us
             </Link>
-            <Link
-              to="/contests"
-              className="flex h-10 items-center transition-colors hover:text-blue-200"
-            >
+            <Link to="/contests" className={getLinkClasses("/contests")}>
               Contests
             </Link>
-            <Link
-              to="/contact"
-              className="flex h-10 items-center transition-colors hover:text-blue-200"
-            >
+            <Link to="/potw" className={getLinkClasses("/potw")}>
+              POTW
+            </Link>
+            <Link to="/contact" className={getLinkClasses("/contact")}>
               Contact Us
             </Link>
           </nav>

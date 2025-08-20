@@ -12,6 +12,7 @@ import Contests from "./pages/Contests";
 import NotFound from "./pages/NotFound";
 import Events from "./pages/Events";
 import Contact from "./pages/Contact";
+import POTW from "./pages/POTW";
 import EventReview2025 from "./pages/events/EventReview2025";
 
 const App = () => {
@@ -34,6 +35,7 @@ const App = () => {
 						<Route path="/contests" element={<Contests />} />
 						<Route path="/events" element={<Events />} />
 						<Route path="/events/review-2025" element={<EventReview2025 />} />
+						<Route path="/potw" element={<POTW />} />
 						<Route path="/contact" element={<Contact />} />
 						<Route path="*" element={<NotFound />} />
 					</Routes>
