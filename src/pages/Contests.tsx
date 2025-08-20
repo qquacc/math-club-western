@@ -1,199 +1,296 @@
-
+import { useState } from "react";
 import Header from "@/components/Header";
 import PageHeader from "@/components/PageHeader";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Calendar, Trophy, Users, MapPin, ExternalLink } from "lucide-react";
+import {
+	Card,
+	CardContent,
+	CardDescription,
+	CardHeader,
+	CardTitle,
+} from "@/components/ui/card";
+import {
+	Table,
+	TableBody,
+	TableCell,
+	TableHead,
+	TableHeader,
+	TableRow,
+} from "@/components/ui/table";
+import QuizStart from "@/components/QuizStart";
+import QuizGame from "@/components/QuizGame";
+import { Link } from "react-router-dom";
 import Footer from "@/components/Footer";
 
 const Contests = () => {
-	const contests = [
-		{
-			title: "Calgary High School Mathematics Contest",
-			date: "March 15, 2025",
-			location: "Western Canada High School",
-			description: "Annual city-wide mathematics competition featuring challenging problems across all high school levels.",
-			status: "Registration Open",
-			participants: "150+ expected",
-			prizes: "Medals and Certificates",
-			difficulty: "All Levels"
-		},
-		{
-			title: "Alberta Mathematics Competition",
-			date: "April 20, 2025", 
-			location: "University of Calgary",
-			description: "Provincial mathematics competition with participants from across Alberta.",
-			status: "Coming Soon",
-			participants: "300+ expected",
-			prizes: "Scholarships Available",
-			difficulty: "Advanced"
-		},
-		{
-			title: "Canadian Mathematical Olympiad Qualifier",
-			date: "May 10, 2025",
-			location: "Various Locations",
-			description: "Qualifying competition for the Canadian Mathematical Olympiad.",
-			status: "Applications Open",
-			participants: "50+ selected",
-			prizes: "CMO Qualification",
-			difficulty: "Expert"
+	const [activeSection, setActiveSection] = useState("upcoming");
+	const [quizStarted, setQuizStarted] = useState(false);
+
+	const handleStartQuiz = () => {
+		setQuizStarted(true);
+	};
+
+	const renderContent = () => {
+		switch (activeSection) {
+			case "upcoming":
+				return (
+					<div className="space-y-6">
+						<h2 className="text-2xl font-bold text-gray-800">
+							Upcoming Contests
+						</h2>
+						<div className="grid grid-cols-1 gap-6">
+							{/* Placeholder cards */}
+							<Card>
+								<CardHeader>
+									<CardTitle>CHSMC 2024</CardTitle>
+									<CardDescription>
+										Calgary High School Mathematics Contest
+									</CardDescription>
+								</CardHeader>
+								<CardContent>
+									<p className="mb-4 text-sm text-gray-600">
+										The annual Calgary High School Mathematics Contest featuring
+										challenging problems for high school students.
+									</p>
+									<p className="text-sm font-semibold">Date: March 15, 2024</p>
+									<p className="text-sm">
+										Registration deadline: March 1, 2024
+									</p>
+								</CardContent>
+							</Card>
+
+							<Card>
+								<CardHeader>
+									<CardTitle>AMC 12</CardTitle>
+									<CardDescription>
+										American Mathematics Competitions
+									</CardDescription>
+								</CardHeader>
+								<CardContent>
+									<p className="mb-4 text-sm text-gray-600">
+										A 25-question, 75-minute, multiple choice examination in
+										high school mathematics.
+									</p>
+									<p className="text-sm font-semibold">
+										Date: February 8, 2024
+									</p>
+									<p className="text-sm">
+										Registration deadline: January 25, 2024
+									</p>
+								</CardContent>
+							</Card>
+
+							<Card>
+								<CardHeader>
+									<CardTitle>COMC</CardTitle>
+									<CardDescription>
+										Canadian Open Mathematics Challenge
+									</CardDescription>
+								</CardHeader>
+								<CardContent>
+									<p className="mb-4 text-sm text-gray-600">
+										A challenging mathematics competition for students across
+										Canada.
+									</p>
+									<p className="text-sm font-semibold">
+										Date: November 2, 2024
+									</p>
+									<p className="text-sm">
+										Registration deadline: October 15, 2024
+									</p>
+								</CardContent>
+							</Card>
+						</div>
+					</div>
+				);
+
+			case "past":
+				return (
+					<div className="space-y-6">
+						<h2 className="text-2xl font-bold text-gray-800">Past Contests</h2>
+						<p className="text-gray-600">
+							Access problems, solutions, and marking guides from previous
+							Calgary High School Math Competitions.
+						</p>
+						<Table>
+							<TableHeader>
+								<TableRow>
+									<TableHead>MC/NR Problems</TableHead>
+									<TableHead>Math Battles Problems</TableHead>
+									<TableHead>Solutions</TableHead>
+									<TableHead>Release + Photos</TableHead>
+								</TableRow>
+							</TableHeader>
+							<TableBody>
+								<TableRow>
+									<TableCell>
+										<Link
+											to="https://drive.google.com/file/d/123qb5QMPzhTpSyWAqwxJmhlYfD6YPRii/view?usp=sharing"
+											className="text-blue-500 hover:underline"
+										>
+											CHSMC 2025 MC/NR
+										</Link>
+									</TableCell>
+									<TableCell>
+										<Link
+											to="https://drive.google.com/file/d/1Tj5AY3309atvHib_ORKrEOWVJhsAD2Ir/view?usp=sharing"
+											className="text-blue-500 hover:underline"
+										>
+											CHSMC 2025 Math Battles
+										</Link>
+									</TableCell>
+									<TableCell>
+										<Link
+											to="https://drive.google.com/file/d/1wgC3hzVTJTuL60yplk1odxJrdBtPlr0M/view?usp=sharing"
+											className="text-blue-500 hover:underline"
+										>
+											CHSMC 2025 Solutions
+										</Link>
+									</TableCell>
+									<TableCell>
+										<Link
+											to="/events/review-2025"
+											className="text-blue-500 hover:underline"
+										>
+											CHSMC 2025 Event Review
+										</Link>
+									</TableCell>
+								</TableRow>
+								<TableRow>
+									<TableCell>-</TableCell>
+									<TableCell>-</TableCell>
+									<TableCell>-</TableCell>
+									<TableCell>-</TableCell>
+								</TableRow>
+							</TableBody>
+						</Table>
+					</div>
+				);
+
+			case "practice":
+				return (
+					<div className="space-y-6">
+						<h2 className="text-2xl font-bold text-gray-800">Are You Ready?</h2>
+						{!quizStarted ? (
+							<QuizStart onStart={handleStartQuiz} />
+						) : (
+							<QuizGame />
+						)}
+					</div>
+				);
+
+			case "about":
+				return (
+					<div className="space-y-6">
+						<h2 className="text-2xl font-bold text-gray-800">About CHSMC</h2>
+						<p className="text-gray-600">
+							The Calgary High School Mathematics Contest (CHSMC) is an annual
+							event designed to challenge and inspire high school students in
+							Calgary and beyond. The contest features a variety of problem
+							types, including multiple choice, numeric response, and math
+							battles. The CHSMC is hosted in a different High School every
+							year, helping to establish a cross-Calgary math community.
+						</p>
+						<h3 className="text-2xl font-bold text-gray-800">Difficulty</h3>
+						<p className="text-gray-600">
+							All problems on the CHSMC require Grade 9 curricular math to
+							solve, but no questions require knowledge beyond standard Math
+							10-1 content. Each question is scaled with a difficulty rating
+							from 1 to 10, with 1 being very easy for high school students
+							(What is the value of 1/2+1/3?) and 10 being very difficult (How
+							many factors does 100029996 have?)
+							<br />
+							<br />
+							Multiple Choice questions begin at a difficulty of 1 and go up to
+							around 7, while Numeric Response questions begin at a difficulty
+							of 3 and go up to around 10. During the Math Battles, participants
+							will tackle four very hard problems (7-10) and present their best
+							attempt at constructing a solution. But don't be discouraged by
+							the high difficulty: the problems are designed so that students
+							will not always be able to solve them!
+						</p>
+					</div>
+				);
+
+			default:
+				return null;
 		}
-	];
+	};
 
 	return (
 		<div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
 			<Header />
 			<PageHeader
-				title="Mathematics Contests"
-				subtitle="Challenge yourself in prestigious mathematics competitions and showcase your problem-solving skills against peers from across the region."
-				backgroundImage="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1920&h=600&fit=crop"
+				title="Contests"
+				subtitle="Participate in mathematics competitions, access past contest materials, and practice with our quiz system."
+				backgroundImage="https://images.unsplash.com/photo-1509228627152-72ae9ae6848d?w=1920&h=600&fit=crop"
 			/>
 
-			<div className="py-16">
+			<div className="py-8">
 				<div className="container mx-auto px-4">
-					<div className="max-w-6xl mx-auto">
-						{/* Upcoming Contests */}
-						<div className="mb-12">
-							<h2 className="text-3xl font-bold text-center mb-8 text-gray-800">Upcoming Contests</h2>
-							<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-								{contests.map((contest) => (
-									<Card key={contest.title} className="transition-shadow duration-300 hover:shadow-lg">
-										<CardHeader>
-											<div className="flex items-center justify-between mb-2">
-												<Badge variant={contest.status === "Registration Open" ? "default" : "secondary"}>
-													{contest.status}
-												</Badge>
-												<Trophy className="h-5 w-5 text-yellow-500" />
-											</div>
-											<CardTitle className="text-xl mb-2">{contest.title}</CardTitle>
-											<div className="space-y-2 text-sm text-gray-600">
-												<div className="flex items-center gap-2">
-													<Calendar className="h-4 w-4" />
-													<span>{contest.date}</span>
-												</div>
-												<div className="flex items-center gap-2">
-													<MapPin className="h-4 w-4" />
-													<span>{contest.location}</span>
-												</div>
-												<div className="flex items-center gap-2">
-													<Users className="h-4 w-4" />
-													<span>{contest.participants}</span>
-												</div>
-											</div>
-										</CardHeader>
-										<CardContent>
-											<CardDescription className="mb-4">
-												{contest.description}
-											</CardDescription>
-											<div className="space-y-2 mb-4">
-												<div className="flex justify-between text-sm">
-													<span className="font-medium">Difficulty:</span>
-													<span className={`font-medium ${
-														contest.difficulty === "Expert" ? "text-red-600" :
-														contest.difficulty === "Advanced" ? "text-orange-600" :
-														"text-green-600"
-													}`}>
-														{contest.difficulty}
-													</span>
-												</div>
-												<div className="flex justify-between text-sm">
-													<span className="font-medium">Prizes:</span>
-													<span>{contest.prizes}</span>
-												</div>
-											</div>
-											<Button className="w-full" variant="outline">
-												<ExternalLink className="h-4 w-4 mr-2" />
-												Learn More
-											</Button>
-										</CardContent>
-									</Card>
-								))}
+					<div className="flex flex-col gap-8 lg:flex-row">
+						{/* Sidebar */}
+						<div className="lg:w-1/4">
+							<div className="sticky top-8 rounded-lg bg-white p-6 shadow-md">
+								<h3 className="mb-4 text-lg font-semibold text-gray-800">
+									Contest Sections
+								</h3>
+								<div className="space-y-2">
+									<Button
+										variant={activeSection === "upcoming" ? "default" : "ghost"}
+										className="w-full justify-start"
+										onClick={() => {
+											setActiveSection("upcoming");
+											setQuizStarted(false);
+										}}
+									>
+										Upcoming Contests
+									</Button>
+									<Button
+										variant={activeSection === "past" ? "default" : "ghost"}
+										className="w-full justify-start"
+										onClick={() => {
+											setActiveSection("past");
+											setQuizStarted(false);
+										}}
+									>
+										Past Contests
+									</Button>
+									<Button
+										variant={activeSection === "practice" ? "default" : "ghost"}
+										className="w-full justify-start"
+										onClick={() => {
+											setActiveSection("practice");
+											setQuizStarted(false);
+										}}
+									>
+										Are You Ready?
+									</Button>
+									<Button
+										variant={activeSection === "about" ? "default" : "ghost"}
+										className="w-full justify-start"
+										onClick={() => {
+											setActiveSection("about");
+											setQuizStarted(false);
+										}}
+									>
+										About CHSMC
+									</Button>
+								</div>
 							</div>
 						</div>
 
-						{/* Contest Preparation Tips */}
-						<Card className="mb-8">
-							<CardHeader>
-								<CardTitle className="text-2xl text-center">Contest Preparation Tips</CardTitle>
-							</CardHeader>
-							<CardContent>
-								<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-									<div>
-										<h3 className="text-lg font-semibold mb-3 text-blue-600">Study Strategies</h3>
-										<ul className="space-y-2 text-gray-700">
-											<li className="flex items-start gap-2">
-												<span className="text-blue-500 mt-1">•</span>
-												Practice past competition problems regularly
-											</li>
-											<li className="flex items-start gap-2">
-												<span className="text-blue-500 mt-1">•</span>
-												Focus on problem-solving techniques rather than memorization
-											</li>
-											<li className="flex items-start gap-2">
-												<span className="text-blue-500 mt-1">•</span>
-												Join our weekly problem-solving sessions
-											</li>
-											<li className="flex items-start gap-2">
-												<span className="text-blue-500 mt-1">•</span>
-												Work with peers to discuss different approaches
-											</li>
-										</ul>
-									</div>
-									<div>
-										<h3 className="text-lg font-semibold mb-3 text-green-600">Day of Contest</h3>
-										<ul className="space-y-2 text-gray-700">
-											<li className="flex items-start gap-2">
-												<span className="text-green-500 mt-1">•</span>
-												Get a good night's sleep before the competition
-											</li>
-											<li className="flex items-start gap-2">
-												<span className="text-green-500 mt-1">•</span>
-												Arrive early to familiarize yourself with the venue
-											</li>
-											<li className="flex items-start gap-2">
-												<span className="text-green-500 mt-1">•</span>
-												Read all problems before starting
-											</li>
-											<li className="flex items-start gap-2">
-												<span className="text-green-500 mt-1">•</span>
-												Manage your time effectively across all problems
-											</li>
-										</ul>
-									</div>
-								</div>
-							</CardContent>
-						</Card>
-
-						{/* Past Results */}
-						<Card>
-							<CardHeader>
-								<CardTitle className="text-2xl text-center">Our Recent Achievements</CardTitle>
-								<CardDescription className="text-center">
-									Our club members' outstanding performance in recent competitions
-								</CardDescription>
-							</CardHeader>
-							<CardContent>
-								<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-									<div className="text-center">
-										<div className="text-3xl font-bold text-yellow-600 mb-2">1st Place</div>
-										<div className="text-sm text-gray-600">Calgary Regional Math Contest 2024</div>
-									</div>
-									<div className="text-center">
-										<div className="text-3xl font-bold text-gray-500 mb-2">2nd Place</div>
-										<div className="text-sm text-gray-600">Alberta Provincial Competition 2024</div>
-									</div>
-									<div className="text-center">
-										<div className="text-3xl font-bold text-orange-600 mb-2">3rd Place</div>
-										<div className="text-sm text-gray-600">Western Canada Mathematics Olympiad 2024</div>
-									</div>
-								</div>
-							</CardContent>
-						</Card>
+						{/* Main Content */}
+						<div className="lg:w-3/4">
+							<div className="rounded-lg bg-white p-8 shadow-md">
+								{renderContent()}
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
-
+			
+			{/* Footer */}
 			<Footer />
 		</div>
 	);

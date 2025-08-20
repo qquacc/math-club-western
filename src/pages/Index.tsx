@@ -1,7 +1,7 @@
-
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import RecentEvents from "@/components/RecentEvents";
+import ProgramsSection from "@/components/ProgramsSection";
 import Features from "@/components/Features";
 import CallToAction from "@/components/CallToAction";
 import Footer from "@/components/Footer";
@@ -13,13 +13,36 @@ const Index = () => {
 				<Header />
 
 				{/* Hero Section */}
-				<Hero />
+				<div className="bg-gradient-to-br from-gray-50 to-blue-50">
+					<Hero />
+				</div>
+
+				{/* Gradient Divider */}
+				<div className="h-24 bg-gradient-to-b from-white to-white" />
 
 				{/* Recent Events Section */}
-				<RecentEvents />
+				<div className="bg-white">
+					<RecentEvents />
+				</div>
+
+				{/* Gradient Divider */}
+				<div className="h-24 bg-gradient-to-b from-white to-gray-50" />
+
+				{/* Programs Section */}
+				<div className="bg-gray-50">
+					<ProgramsSection />
+				</div>
+
+				{/* Gradient Divider */}
+				<div className="h-24 bg-gradient-to-b from-gray-50 to-blue-50" />
 
 				{/* Features Section */}
-				<Features />
+				<div className="bg-blue-50">
+					<Features />
+				</div>
+
+				{/* Gradient Divider */}
+				<div className="to-purple-150 h-12 bg-gradient-to-b from-blue-50" />
 
 				{/* Call to Action */}
 				<CallToAction />
