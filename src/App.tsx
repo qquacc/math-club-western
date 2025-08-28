@@ -14,6 +14,7 @@ import Events from "./pages/Events";
 import ProblemOfTheWeek from "./pages/ProblemOfTheWeek";
 import POTWArchive from "./pages/POTWArchive";
 import Contact from "./pages/Contact";
+import POTW from "./pages/POTW";
 import EventReview2025 from "./pages/events/EventReview2025";
 
 const App = () => {
