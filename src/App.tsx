@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -11,41 +10,38 @@ import Quiz from "./pages/Quiz";
 import Contests from "./pages/Contests";
 import NotFound from "./pages/NotFound";
 import Events from "./pages/Events";
-import ProblemOfTheWeek from "./pages/ProblemOfTheWeek";
-import POTWArchive from "./pages/POTWArchive";
 import Contact from "./pages/Contact";
 import POTW from "./pages/POTW";
 import EventReview2025 from "./pages/events/EventReview2025";
 
 const App = () => {
-	const [queryClient] = useState(() => new QueryClient());
+  const [queryClient] = useState(() => new QueryClient());
 
-	// Dynamically set basename for GitHub Pages or local
-	const isProd = process.env.NODE_ENV === "production";
-	const basename = isProd ? "/math-club-western" : undefined;
+  // Dynamically set basename for GitHub Pages or local
+  const isProd = process.env.NODE_ENV === "production";
+  const basename = isProd ? "/math-club-western" : undefined;
 
-	return (
-		<QueryClientProvider client={queryClient}>
-			<TooltipProvider>
-				<Toaster />
-				<Sonner />
-				<BrowserRouter basename={basename}>
-					<Routes>
-						<Route path="/" element={<Index />} />
-						<Route path="/about" element={<About />} />
-						<Route path="/quiz" element={<Quiz />} />
-						<Route path="/contests" element={<Contests />} />
-						<Route path="/events" element={<Events />} />
-						<Route path="/events/review-2025" element={<EventReview2025 />} />
-						<Route path="/potw" element={<ProblemOfTheWeek />} />
-						<Route path="/potw/archive" element={<POTWArchive />} />
-						<Route path="/contact" element={<Contact />} />
-						<Route path="*" element={<NotFound />} />
-					</Routes>
-				</BrowserRouter>
-			</TooltipProvider>
-		</QueryClientProvider>
-	);
+  return (
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter basename={basename}>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/quiz" element={<Quiz />} />
+            <Route path="/contests" element={<Contests />} />
+            <Route path="/events" element={<Events />} />
+            <Route path="/events/review-2025" element={<EventReview2025 />} />
+            <Route path="/potw" element={<POTW />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  );
 };
 
 export default App;

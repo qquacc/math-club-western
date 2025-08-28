@@ -1,4 +1,3 @@
-
 import { ChevronDown } from "lucide-react";
 import {
   DropdownMenu,
@@ -15,34 +14,25 @@ const Header = () => {
   const getLinkClasses = (path: string) => {
     const isActive = location.pathname === path;
     return `flex h-10 items-center px-4 rounded-full transition-all duration-300 ${
-      isActive 
-        ? 'bg-white/20 text-white backdrop-blur-sm shadow-lg' 
-        : 'hover:text-blue-200'
+      isActive
+        ? "bg-white/20 text-white backdrop-blur-sm shadow-lg"
+        : "hover:text-blue-200"
     }`;
   };
-
-						<Link
-							to="/potw"
-							className="flex h-10 items-center transition-colors hover:text-blue-200"
-						>
-							POTW
-						</Link>
-
-						<Link
-							to="/about"
-							className="flex h-10 items-center transition-colors hover:text-blue-200"
-						>
-							About Us
-						</Link>
-
+  return (
+    <header className="bg-black">
+      <div className="container mx-auto px-4 py-2">
+        <div className="flex justify-between items-center">
+          <div className="text-white text-lg font-bold">Logo</div>
+          <nav className="hidden md:flex items-center space-x-2">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button
                   variant="ghost"
                   className={`flex h-10 items-center text-white hover:bg-transparent hover:text-blue-200 px-4 rounded-full transition-all duration-300 ${
-                    location.pathname.startsWith('/events') 
-                      ? 'bg-white/20 backdrop-blur-sm shadow-lg' 
-                      : ''
+                    location.pathname.startsWith("/events")
+                      ? "bg-white/20 backdrop-blur-sm shadow-lg"
+                      : ""
                   }`}
                 >
                   Events <ChevronDown className="ml-1 h-4 w-4" />
@@ -56,7 +46,6 @@ const Header = () => {
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
-
             <Link to="/about" className={getLinkClasses("/about")}>
               About Us
             </Link>
