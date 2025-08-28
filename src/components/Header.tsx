@@ -83,6 +83,13 @@ const Header = () => {
 						</DropdownMenu>
 
 						<Link
+							to="/potw"
+							className="flex h-10 items-center transition-colors hover:text-blue-200"
+						>
+							POTW
+						</Link>
+
+						<Link
 							to="/about"
 							className="flex h-10 items-center transition-colors hover:text-blue-200"
 						>

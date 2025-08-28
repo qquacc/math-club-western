@@ -1,0 +1,10 @@
+[
+	{
+		"id": "1",
+		"title": "Backyard",
+		"date": "2025-08-28",
+		"image": "/images/potw1.png",
+		"prompt": "Erin's backyard is split up into four triangular sections. Three of those sections will be filled with gravel, while the section in the center will be used as a garden. She measures side lengths of two of the gravel sections and finds them to be 5 and 6 meters, as shown in the diagram. Using the power of math, Erin also calculates that the area of her garden will be 80 meters squared. Given this information, can you find the area of her entire backyard?",
+		"difficulty": 2
+	}
+]
