@@ -14,10 +14,9 @@ export type Puzzle = {
 	difficulty: number;
 };
 
+import raw from "@/data/puzzles.json";
+const data = raw as Puzzle[];	
+
 export async function fetchPuzzles(): Promise<Puzzle[]> {
-	const res = await fetch("/src/data/puzzles.json", { cache: "no-store" });
-	if (!res.ok) throw new Error("Failed to load puzzles.json");
-	const data = (await res.json()) as Puzzle[];
-	
-	return data.sort((a, b) => (a.date < b.date ? 1 : -1));
+	return [...data].sort((a, b) => (a.date < b.date ? 1 : -1));
 }
