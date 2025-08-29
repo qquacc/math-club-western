@@ -11,8 +11,10 @@ import Contests from "./pages/Contests";
 import NotFound from "./pages/NotFound";
 import Events from "./pages/Events";
 import Contact from "./pages/Contact";
-import POTW from "./pages/POTW";
+import POTW from "./pages/ProblemOfTheWeek";
 import EventReview2025 from "./pages/events/EventReview2025";
+import ProblemOfTheWeek from "./pages/ProblemOfTheWeek";
+import POTWArchive from "./pages/POTWArchive";
 
 const App = () => {
   const [queryClient] = useState(() => new QueryClient());
@@ -34,7 +36,11 @@ const App = () => {
             <Route path="/contests" element={<Contests />} />
             <Route path="/events" element={<Events />} />
             <Route path="/events/review-2025" element={<EventReview2025 />} />
-            <Route path="/potw" element={<POTW />} />
+            <Route path="/problem-of-the-week" element={<ProblemOfTheWeek />} />
+            <Route
+              path="/problem-of-the-week/archive"
+              element={<POTWArchive />}
+            />
             <Route path="/contact" element={<Contact />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

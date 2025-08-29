@@ -20,11 +20,20 @@ const Header = () => {
     }`;
   };
   return (
-    <header className="bg-black">
-      <div className="container mx-auto px-4 py-2">
-        <div className="flex justify-between items-center">
-          <div className="text-white text-lg font-bold">Logo</div>
-          <nav className="hidden md:flex items-center space-x-2">
+    <header className="bg-gradient-to-r from-blue-600 to-purple-700 text-white shadow-lg">
+      <div className="container mx-auto px-4 py-6">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-3">
+            <img
+              src="https://live.staticflickr.com/65535/54710883758_df5e40760b_b.jpg"
+              alt="Math Club Logo"
+              className="h-8 w-8 rounded-full object-cover"
+            />
+            <Link to="/" className="text-2xl font-bold">
+              Students United by Mathematics
+            </Link>
+          </div>
+          <nav className="hidden items-center space-x-2 md:flex">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button
@@ -46,13 +55,17 @@ const Header = () => {
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
+
             <Link to="/about" className={getLinkClasses("/about")}>
               About Us
             </Link>
             <Link to="/contests" className={getLinkClasses("/contests")}>
               Contests
             </Link>
-            <Link to="/potw" className={getLinkClasses("/potw")}>
+            <Link
+              to="/problem-of-the-week"
+              className={getLinkClasses("/problem-of-the-week")}
+            >
               POTW
             </Link>
             <Link to="/contact" className={getLinkClasses("/contact")}>
