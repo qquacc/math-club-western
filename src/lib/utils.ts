@@ -20,3 +20,8 @@ const data = raw as Puzzle[];
 export async function fetchPuzzles(): Promise<Puzzle[]> {
 	return [...data].sort((a, b) => (a.date < b.date ? 1 : -1));
 }
+
+export function withBase(path: string) {
+	const base = import.meta.env.BASE_URL || "/";
+	return `${base}${path.replace(/^\/+/, "")}`;
+}

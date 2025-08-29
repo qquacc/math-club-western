@@ -1,7 +1,7 @@
 import Header from "@/components/Header";
 import PageHeader from "@/components/PageHeader";
 import { useEffect, useMemo, useState } from "react";
-import { fetchPuzzles, Puzzle } from "@/lib/utils";
+import { fetchPuzzles, withBase, Puzzle } from "@/lib/utils";
 import { useParams, Link } from "react-router-dom";
 import Footer from "@/components/Footer";
 
@@ -97,7 +97,7 @@ export default function ProblemOfTheWeek() {
 
 				{puzzle.image && (
 					<img
-						src={puzzle.image}
+						src={withBase(puzzle.image!)}
 						alt={puzzle.title}
 						className="mb-6 w-full rounded-lg border object-contain"
 					/>
