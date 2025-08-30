@@ -3,7 +3,7 @@
 		"id": "1",
 		"title": "Backyard",
 		"date": "2025-08-28",
-		"image": "/images/potw1.png",
+		"image": "images/potw1.png",
 		"prompt": "Erin's backyard is split up into four triangular sections. Three of those sections will be filled with gravel, while the section in the center will be used as a garden. She measures side lengths of two of the gravel sections and finds them to be 5 and 6 meters, as shown in the diagram. Using the power of math, Erin also calculates that the area of her garden will be 80 meters squared. Given this information, can you find the area of her entire backyard?",
 		"difficulty": 2
 	},
@@ -11,7 +11,7 @@
 		"id": "2",
 		"title": "Escape Password",
 		"date": "2025-08-29",
-		"image": "/images/potw2.png",
+		"image": "images/potw2.png",
 		"prompt": "An evil mathematician has abducted Andy and trapped him in a titanium metal box! The box is completely sealed, and there is no way Andy can break out. Just when Andy is about to lose all hope, he notices that on one of the walls, there is an 8 by 8 grid containing 64 separate buttons, each labelled with a number (However, some of the buttons, including the blank spaces and the two green ones in the middle in the diagram, cannot be read because the numbers on them are scratched off). A keypad beside it reads: \"The password to open the box is the sum of the numbers on the two green buttons.\" Andy knows that the mathematician must have numbered the boxes according to some mathematical pattern. What number should Andy enter to save himself?",
 		"difficulty": 4
 	}

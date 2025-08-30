@@ -1,7 +1,7 @@
 import Header from "@/components/Header";
 import PageHeader from "@/components/PageHeader";
 import { useEffect, useState } from "react";
-import { fetchPuzzles, Puzzle } from "@/lib/utils";
+import { fetchPuzzles, withBase, Puzzle } from "@/lib/utils";
 import { Link } from "react-router-dom";
 import Footer from "@/components/Footer";
 
@@ -73,7 +73,7 @@ export default function POTWArchive() {
 							</div>
 							{p.image && (
 								<img
-									src={p.image}
+									src={withBase(p.image!)}
 									alt={p.title}
 									className="h-40 w-full object-cover"
 									loading="lazy"
