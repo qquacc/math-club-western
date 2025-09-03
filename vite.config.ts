@@ -4,9 +4,10 @@ import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
 
-// https://vitejs.dev/config/
+const base = process.env.VERCEL ? "/" : "/math-club-western/";
+
 export default defineConfig(({ mode }) => ({
-	base: mode === "production" ? "/math-club-western/" : "/",
+	base,
 
 	server: {
 		host: "::",
