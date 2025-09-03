@@ -25,3 +25,14 @@ export function withBase(path: string) {
 	const base = import.meta.env.BASE_URL || "/";
 	return `${base}${path.replace(/^\/+/, "")}`;
 }
+
+const RAW_BASE = (import.meta.env.VITE_POTW_API_BASE ?? "").trim();
+
+export function apiUrl(path: string): string {
+	const p = path.startsWith("/") ? path : `/${path}`;
+
+	if (RAW_BASE) {
+		return new URL(p, RAW_BASE).toString();
+	}
+	return p;
+}
