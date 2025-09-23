@@ -7,7 +7,8 @@ import "dotenv/config";
 
 const app = express();
 app.use(express.json({ limit: "32kb" }));
-app.use(cors({ origin: process.env.ALLOW_ORIGIN, methods: ["POST"] })); // dev origin
+
+app.use(cors({ origin: process.env.ALLOW_ORIGIN, methods: ["POST"] }));
 
 const uri = process.env.MONGODB_URI!;
 const dbName = process.env.MONGODB_DB || "mathclub";
@@ -16,6 +17,7 @@ const client = new MongoClient(uri, {
 	serverSelectionTimeoutMS: 5000,
 	maxPoolSize: 5,
 });
+
 await client.connect();
 
 const Payload = z.object({
@@ -38,24 +40,32 @@ app.post("/api/potw/submit", async (req, res) => {
 
 		const ipHash = crypto.createHash("sha256").update(ip).digest("hex").slice(0, 16);
 
-		await col.insertOne({
-			...parsed,
-			emailLc,
-			createdAt: new Date(),
-			ipHash,
-			ua: req.headers["user-agent"] || "",
-		});
+		const result = await col.updateOne(
+			{ puzzleId: parsed.puzzleId, emailLc },
+			{
+				$setOnInsert: {
+					...parsed,
+					emailLc,
+					createdAt: new Date(),
+					ipHash,
+					ua: req.headers["user-agent"] || "",
+				},
+			},
+			{ upsert: true },
+		);
 
-		res.status(201).json({ ok: true });
-	} catch (e: unknown) {
-		// duplicate key (if you created a unique index on puzzleId+emailLc)
-		if (typeof e === "object" && e && "code" in e && (e as { code?: number }).code === 11000) {
-			return res.status(200).json({ ok: true, duplicate: true });
+		if (result.upsertedCount === 1) {
+			return res.status(201).json({ ok: true });
 		}
-		if (e instanceof Error) return res.status(400).json({ error: "Invalid input. Please check your submission and try again." });
+		return res.status(200).json({ ok: true, duplicate: true });
+	} catch (e: unknown) {
+		if (e instanceof Error) {
+			return res.status(400).json({ error: "Invalid input. Please check your submission." });
+		}
 		console.error(e);
 		return res.status(500).json({ error: "Server error" });
 	}
 });
 
-app.listen(3000, () => console.log("API listening on http://localhost:3000"));
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`API listening at http://localhost:${PORT}`));
