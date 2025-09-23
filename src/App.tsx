@@ -11,7 +11,6 @@ import Contests from "./pages/Contests";
 import NotFound from "./pages/NotFound";
 import Events from "./pages/Events";
 import Contact from "./pages/Contact";
-import POTW from "./pages/ProblemOfTheWeek";
 import EventReview2025 from "./pages/events/EventReview2025";
 import ProblemOfTheWeek from "./pages/ProblemOfTheWeek";
 import POTWArchive from "./pages/POTWArchive";
@@ -19,9 +18,7 @@ import POTWArchive from "./pages/POTWArchive";
 const App = () => {
 	const [queryClient] = useState(() => new QueryClient());
 
-	// Dynamically set basename for GitHub Pages or local
-	const isProd = process.env.NODE_ENV === "production";
-	const basename = isProd ? "/math-club-western" : undefined;
+	const basename = import.meta.env.BASE_URL || "/math-club-western";
 
 	return (
 		<QueryClientProvider client={queryClient}>

@@ -1,7 +1,7 @@
 import Header from "@/components/Header";
 import PageHeader from "@/components/PageHeader";
 import { useEffect, useMemo, useState } from "react";
-import { fetchPuzzles, withBase, Puzzle } from "@/lib/utils";
+import { fetchPuzzles, withBase, apiUrl, Puzzle } from "@/lib/utils";
 import { useParams, Link } from "react-router-dom";
 import Footer from "@/components/Footer";
 
@@ -218,9 +218,20 @@ async function submit(payload: {
 	name: string;
 	email: string;
 	answer: string;
-}) {
-	// TODO: link with db
-	await new Promise((r) => setTimeout(r, 600));
-	console.log("Submitted:", payload);
-	return { ok: true };
+}): Promise<{ ok: boolean; duplicate?: boolean }> {
+	const res = await fetch(apiUrl("/api/potw/submit"), {
+		method: "POST",
+		headers: { "Content-Type": "application/json" },
+		body: JSON.stringify(payload),
+	});
+
+	const ct = res.headers.get("content-type") || "";
+	if (!ct.includes("application/json")) {
+		const text = await res.text();
+		throw new Error(`Unexpected response: ${res.status}. ${text.slice(0, 200)}`);
+	}
+
+	const data = await res.json();
+	if (!res.ok && !data?.ok) throw new Error(data?.error || "Submission failed");
+	return data;
 }
