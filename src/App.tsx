@@ -15,6 +15,7 @@ import POTW from "./pages/ProblemOfTheWeek";
 import EventReview2025 from "./pages/events/EventReview2025";
 import ProblemOfTheWeek from "./pages/ProblemOfTheWeek";
 import POTWArchive from "./pages/POTWArchive";
+import Login from "./pages/Login";
 
 const App = () => {
 	const [queryClient] = useState(() => new QueryClient());
@@ -40,6 +41,7 @@ const App = () => {
 						<Route path="/problem-of-the-week/:id" element={<ProblemOfTheWeek />} />
 						<Route path="/problem-of-the-week/archive" element={<POTWArchive />} />
 						<Route path="/contact" element={<Contact />} />
+						<Route path="/login" element={<Login />} />
 						<Route path="*" element={<NotFound />} />
 					</Routes>
 				</BrowserRouter>
