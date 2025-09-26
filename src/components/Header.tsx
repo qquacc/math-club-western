@@ -71,6 +71,9 @@ const Header = () => {
             <Link to="/contact" className={getLinkClasses("/contact")}>
               Contact Us
             </Link>
+            <Link to="/login" className={getLinkClasses("/login")}>
+              Login
+            </Link>
           </nav>
         </div>
       </div>
